@@ -1,3 +1,3 @@
-# Node Express Template
+# Personal Finance Manager - Backend
 
-A Node Express Server Template with Typescript, eslint, webpack, commitlint, husky setup
+Backend for Personal Finance Manager made with Nodejs, Express & Typescript
