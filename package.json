@@ -1,7 +1,7 @@
 {
-  "name": "node-express-template",
+  "name": "finance-manager-backend",
   "version": "0.0.0",
-  "description": "A Node Express Server Template with Typescript, eslint, webpack, commitlint, husky setup",
+  "description": "Backend for Personal Finance Manager made with Nodejs, Express & Typescript",
   "main": "src/app.ts",
   "scripts": {
     "prepare": "husky install && husky add .husky/commit-msg 'npx --no-install commitlint --edit $1'",
