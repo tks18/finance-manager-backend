@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "module": "commonjs",
+    "outDir": "./out",
+    "rootDir": "./src",
+    "strict": true,
+    "moduleResolution": "node",
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["/*"],
+      "@plugins/*": ["plugins/*"],
+      "@plugins": ["plugins"],
+      "@models/*": ["models/*"],
+      "@models": ["models"],
+      "@routes/*": ["routes/*"],
+      "@routes": ["routes"],
+      "@typs/*": ["types/*"],
+      "@typs": ["types"]
+    },
+    "rootDirs": ["./src"],
+    "typeRoots": ["./src/types"],
+    "types": ["node"],
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "exclude": ["./webpack.config.js"]
+}

@@ -1,0 +1,67 @@
+{
+  "root": true,
+  "env": {
+    "commonjs": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:jsdoc/recommended",
+    "plugin:node/recommended",
+    "google",
+    "nodejs"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": ["./tsconfig.json"],
+    "ecmaVersion": 12,
+    "ecmaFeatures": {
+      "arrowFunctions": true
+    }
+  },
+  "plugins": [
+    "@typescript-eslint/eslint-plugin",
+    "eslint-plugin-jsdoc",
+    "eslint-plugin-import",
+    "eslint-plugin-node",
+    "eslint-plugin-promise"
+  ],
+  "settings": {
+    "node": {
+      "tryExtensions": [".js", ".json", ".node", ".ts", ".d.ts"]
+    }
+  },
+  "rules": {
+    "linebreak-style": "off",
+    "new-cap": "off",
+    "arrow-parens": "off",
+    "camelcase": "off",
+    "node/no-unsupported-features/es-syntax": "off",
+    "space-before-function-paren": "off",
+    "max-len": "off",
+    "implicit-arrow-linebreak": "off",
+    "operator-linebreak": "off",
+    "indent": "off",
+    "strict": "off",
+    "valid-jsdoc": "off",
+    "node/no-missing-import": "off",
+    "object-curly-spacing": "off",
+    "semi": "off",
+    "no-dupe-class-members": "off",
+    "@typescript-eslint/no-dupe-class-members": ["error"],
+    "no-redeclare": "off",
+    "@typescript-eslint/no-redeclare": ["error"],
+    "node/no-unsupported-features/node-builtins": "off",
+    "@typescript-eslint/no-unsafe-assignment": "off",
+    "no-void": ["error", { "allowAsStatement": true }],
+    "@typescript-eslint/no-empty-interface": [
+      "error",
+      {
+        "allowSingleExtends": true
+      }
+    ]
+  }
+}
