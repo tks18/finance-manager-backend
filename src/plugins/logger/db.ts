@@ -10,13 +10,13 @@ interface ILogMessage {
 
 const logFormat = winston.format.printf(
   (options: ILogMessage) =>
-    `${String(options.timestamp)} [${String(options.label)}]:[APP LOG] ${
+    `${String(options.timestamp)} [${String(options.label)}]:[DB LOG] ${
       options.level
     }: ${options.message}`,
 );
 
-export const logger = winston.createLogger({
-  levels: winston.config.npm.levels,
+export const dblog = winston.createLogger({
+  levels: winston.config.syslog.levels,
   format: winston.format.combine(
     winston.format.label({
       label: `express-server:${String(process.env.NODE_ENV)}`,
@@ -25,13 +25,12 @@ export const logger = winston.createLogger({
     logFormat,
   ),
   transports: [
-    new winston.transports.Console({ level: 'debug' }),
     new winston.transports.File({
       level: 'debug',
       filename:
         process.env.NODE_ENV === 'production'
-          ? path.resolve(__dirname, 'logs', 'app.log')
-          : path.resolve(__dirname, '../../../logs/app.log'),
+          ? path.resolve(__dirname, 'logs', 'db.log')
+          : path.resolve(__dirname, '../../../logs/db.log'),
     }),
   ],
 });

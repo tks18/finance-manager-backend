@@ -1,5 +1,6 @@
 import { createTerminus, TerminusOptions } from '@godaddy/terminus';
-import { logger } from '@plugins';
+import { sequelize, closeDB } from '@plugins/db';
+import { logger } from '@plugins/logger';
 
 // Types
 import type { Server } from 'http';
@@ -26,7 +27,8 @@ export class ExpressHealthChecker {
    */
   private onSignal(): Promise<void> {
     logger.info('server is starting cleanup');
-    return new Promise<void>((resolve) => resolve());
+    logger.info('Closing Database Connection....');
+    return closeDB(sequelize);
   }
 
   /**
