@@ -16,16 +16,18 @@ const logFormat = winston.format.printf(
 );
 
 export const logger = winston.createLogger({
+  levels: winston.config.npm.levels,
   format: winston.format.combine(
     winston.format.label({
-      label: `zyndex-server:${String(process.env.NODE_ENV)}`,
+      label: `express-server:${String(process.env.NODE_ENV)}`,
     }),
     winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
     logFormat,
   ),
   transports: [
-    new winston.transports.Console(),
+    new winston.transports.Console({ level: 'debug' }),
     new winston.transports.File({
+      level: 'debug',
       filename:
         process.env.NODE_ENV === 'production'
           ? path.resolve(__dirname, 'logs', 'app.log')
