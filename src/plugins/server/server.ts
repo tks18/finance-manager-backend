@@ -1,3 +1,4 @@
+import { Sequelize } from 'sequelize';
 // Core
 import http from 'http';
 import path from 'path';
@@ -6,12 +7,15 @@ import fs from 'fs';
 import os from 'os';
 import { DateTime } from 'luxon';
 
+// Database Plugin
+import { constructDBObject, authenticateDB } from '@plugins/db';
+
 // Exress Middlewares
 import bodyparser from 'body-parser';
 import helmet from 'helmet';
 import xssProtect from 'x-xss-protection';
 import morgan from 'morgan';
-import { logger } from '@plugins';
+import { logger } from '@plugins/logger';
 
 // Health Checker Service
 import { ExpressHealthChecker } from '@plugins/server/generators';
@@ -28,6 +32,7 @@ import type { Express } from 'express';
 export class ExpressServer {
   public app: Express;
   public server: http.Server;
+  public db: undefined | Sequelize;
   private port: string | number;
 
   /**
@@ -63,10 +68,10 @@ export class ExpressServer {
     });
     morgan.token(
       'appMode',
-      () => `zyndex-server:${String(process.env.NODE_ENV)}`,
+      () => `express-server:${String(process.env.NODE_ENV)}`,
     );
     morgan.format(
-      'zyndexLog',
+      'expresslog',
       ':date [:appMode]:[REQUEST LOG] :method :url :status - :response-time ms',
     );
   }
@@ -81,9 +86,9 @@ export class ExpressServer {
     this.app.use(xssProtect());
     this.app.set('trust proxy', true);
     this.prepareLoggerMiddleware();
-    this.app.use(morgan('zyndexLog'));
+    this.app.use(morgan('expresslog'));
     this.app.use(
-      morgan('zyndexLog', {
+      morgan('expresslog', {
         stream: fs.createWriteStream(
           process.env.NODE_ENV === 'development'
             ? path.resolve(__dirname, '../../../logs/requests.log')
@@ -140,6 +145,22 @@ export class ExpressServer {
         logger.info(`Environment: ${os.type()}`);
         logger.info(`Server Started on Port: ${this.port}`);
         logger.info('Connecting to Database.....');
+        const sequelize = constructDBObject();
+        authenticateDB(sequelize)
+          .then(() => sequelize.sync())
+          .then(() =>
+            logger.info(
+              `Succesfully Connected to Postgres ${String(
+                sequelize.config.database,
+              )} Database using Sequelize at ${String(
+                sequelize.config.host,
+              )}:${String(sequelize.config.port)}`,
+            ),
+          )
+          .catch((e) => {
+            logger.error(e);
+            this.server.close();
+          });
       });
       this.server.once('error', (err) => {
         logger.error(
