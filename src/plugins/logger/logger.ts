@@ -34,4 +34,14 @@ export const logger = winston.createLogger({
           : path.resolve(__dirname, '../../../logs/app.log'),
     }),
   ],
+  exceptionHandlers: [
+    new winston.transports.Console({ level: 'debug' }),
+    new winston.transports.File({
+      level: 'debug',
+      filename:
+        process.env.NODE_ENV === 'production'
+          ? path.resolve(__dirname, 'logs', 'exceptions.log')
+          : path.resolve(__dirname, '../../../logs/exceptions.log'),
+    }),
+  ],
 });

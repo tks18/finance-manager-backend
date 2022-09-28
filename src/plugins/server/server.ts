@@ -1,4 +1,3 @@
-import { Sequelize } from 'sequelize';
 // Core
 import http from 'http';
 import path from 'path';
@@ -6,16 +5,17 @@ import express from 'express';
 import fs from 'fs';
 import os from 'os';
 import { DateTime } from 'luxon';
+import { logger } from '@plugins/logger';
 
 // Database Plugin
-import { constructDBObject, authenticateDB } from '@plugins/db';
+import { sequelize, authenticateDB } from '@plugins/db';
+import { initAllModels } from '@models';
 
 // Exress Middlewares
 import bodyparser from 'body-parser';
 import helmet from 'helmet';
 import xssProtect from 'x-xss-protection';
 import morgan from 'morgan';
-import { logger } from '@plugins/logger';
 
 // Health Checker Service
 import { ExpressHealthChecker } from '@plugins/server/generators';
@@ -25,6 +25,7 @@ import router from '@routes';
 
 // Types
 import type { Express } from 'express';
+import type { Sequelize } from 'sequelize';
 
 /**
  * @class ExpressServer
@@ -145,12 +146,12 @@ export class ExpressServer {
         logger.info(`Environment: ${os.type()}`);
         logger.info(`Server Started on Port: ${this.port}`);
         logger.info('Connecting to Database.....');
-        const sequelize = constructDBObject();
         authenticateDB(sequelize)
+          .then(() => initAllModels(sequelize))
           .then(() => sequelize.sync())
           .then(() =>
             logger.info(
-              `Succesfully Connected to Postgres ${String(
+              `Succesfully Connected & Authenticated to Postgres ${String(
                 sequelize.config.database,
               )} Database using Sequelize at ${String(
                 sequelize.config.host,
