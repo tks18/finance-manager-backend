@@ -2,7 +2,7 @@ import { Sequelize } from 'sequelize';
 import { dblog } from '@plugins/logger';
 import { InternalServerError } from '@plugins/errors';
 
-export const constructDBObject = () => {
+const constructDBObject = () => {
   const { DBHOST, DBPORT, DATABASENAME, DBUSERNAME, DBPASSWORD } = process.env;
   if (DBHOST && DBPORT && DATABASENAME && DBUSERNAME && DBPASSWORD) {
     return new Sequelize({
