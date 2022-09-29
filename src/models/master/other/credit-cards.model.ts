@@ -45,6 +45,8 @@ export class CreditCardMaster extends Model<
   declare createdAt: CreationOptional<Date>;
   declare updatedAt: CreationOptional<Date>;
 
+  declare bankRecord?: NonAttribute<BankMaster>;
+
   declare getEmiRecords: HasManyGetAssociationsMixin<EMIMaster>;
   declare addEmiRecord: HasManyAddAssociationMixin<EMIMaster, number>;
   declare addEmiRecords: HasManyAddAssociationsMixin<EMIMaster, number>;
@@ -60,8 +62,6 @@ export class CreditCardMaster extends Model<
   >;
 
   declare emiRecords?: NonAttribute<EMIMaster[]>;
-
-  declare bank?: NonAttribute<BankMaster>;
 
   declare static associations: {
     emiRecords: Association<CreditCardMaster, EMIMaster>;
@@ -80,7 +80,7 @@ function defineRelationships(): void {
   CreditCardMaster.belongsTo(BankMaster, {
     targetKey: '_id',
     foreignKey: 'bank_id',
-    as: 'bank',
+    as: 'bankRecord',
   });
 }
 

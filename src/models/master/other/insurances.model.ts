@@ -1,6 +1,6 @@
 import { DateTime } from 'luxon';
 import { Model, DataTypes } from 'sequelize';
-import { CalendarMaster } from '@models';
+import { CalendarMaster, Expenses } from '@models';
 import type {
   Sequelize,
   InferAttributes,
@@ -8,14 +8,25 @@ import type {
   CreationOptional,
   ForeignKey,
   NonAttribute,
+  HasManyGetAssociationsMixin,
+  HasManyAddAssociationMixin,
+  HasManyAddAssociationsMixin,
+  HasManySetAssociationsMixin,
+  HasManyRemoveAssociationMixin,
+  HasManyRemoveAssociationsMixin,
+  HasManyHasAssociationMixin,
+  HasManyHasAssociationsMixin,
+  HasManyCountAssociationsMixin,
+  HasManyCreateAssociationMixin,
+  Association,
 } from 'sequelize';
 
 /**
  * @class Insurance Master Table
  */
 export class InsuranceMaster extends Model<
-  InferAttributes<InsuranceMaster>,
-  InferCreationAttributes<InsuranceMaster>
+  InferAttributes<InsuranceMaster, { omit: 'transactions' }>,
+  InferCreationAttributes<InsuranceMaster, { omit: 'transactions' }>
 > {
   declare _id: CreationOptional<number>;
   declare name: string;
@@ -35,6 +46,23 @@ export class InsuranceMaster extends Model<
   declare updatedAt: CreationOptional<Date>;
 
   declare calendarRecord?: NonAttribute<CalendarMaster>;
+
+  declare getTransactions: HasManyGetAssociationsMixin<Expenses>;
+  declare addTransaction: HasManyAddAssociationMixin<Expenses, number>;
+  declare addTransactions: HasManyAddAssociationsMixin<Expenses, number>;
+  declare setTransactions: HasManySetAssociationsMixin<Expenses, number>;
+  declare removeTransaction: HasManyRemoveAssociationMixin<Expenses, number>;
+  declare removeTransactions: HasManyRemoveAssociationsMixin<Expenses, number>;
+  declare hasTransaction: HasManyHasAssociationMixin<Expenses, number>;
+  declare hasTransactions: HasManyHasAssociationsMixin<Expenses, number>;
+  declare countTransactions: HasManyCountAssociationsMixin;
+  declare createTransaction: HasManyCreateAssociationMixin<Expenses, 'emi_id'>;
+
+  declare transactions?: NonAttribute<Expenses[]>;
+
+  declare static associations: {
+    transactions: Association<InsuranceMaster, Expenses>;
+  };
 }
 
 /**

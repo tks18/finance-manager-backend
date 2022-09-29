@@ -14,6 +14,13 @@ import {
   initAssetCategoryMaster,
   initAssetMaster,
 } from './master';
+import {
+  initIncomes,
+  initExpenses,
+  initInvestments,
+  initOpeningBalances,
+  initMarketData,
+} from './fact';
 import type { Sequelize } from 'sequelize';
 
 const allFunctions: ((sequelize: Sequelize) => void)[] = [
@@ -31,6 +38,11 @@ const allFunctions: ((sequelize: Sequelize) => void)[] = [
   initInsuranceMaster,
   initAssetCategoryMaster,
   initAssetMaster,
+  initIncomes,
+  initExpenses,
+  initInvestments,
+  initOpeningBalances,
+  initMarketData,
 ];
 
 /**
@@ -45,3 +57,4 @@ export function initAllModels(sequelize: Sequelize) {
 }
 
 export * from './master';
+export * from './fact';
