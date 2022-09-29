@@ -1,5 +1,10 @@
 import { Model, DataTypes } from 'sequelize';
-import { CalendarMaster, AssetCategoryMaster, EMIMaster } from '@models';
+import {
+  CalendarMaster,
+  AssetCategoryMaster,
+  EMIMaster,
+  Expenses,
+} from '@models';
 import { DateTime } from 'luxon';
 import type {
   Sequelize,
@@ -8,20 +13,31 @@ import type {
   CreationOptional,
   ForeignKey,
   NonAttribute,
+  HasManyGetAssociationsMixin,
+  HasManyAddAssociationMixin,
+  HasManyAddAssociationsMixin,
+  HasManySetAssociationsMixin,
+  HasManyRemoveAssociationMixin,
+  HasManyRemoveAssociationsMixin,
+  HasManyHasAssociationMixin,
+  HasManyHasAssociationsMixin,
+  HasManyCountAssociationsMixin,
+  HasManyCreateAssociationMixin,
+  Association,
 } from 'sequelize';
 
 /**
  * @class Asset Master Table
  */
 export class AssetMaster extends Model<
-  InferAttributes<AssetMaster>,
-  InferCreationAttributes<AssetMaster>
+  InferAttributes<AssetMaster, { omit: 'transactions' }>,
+  InferCreationAttributes<AssetMaster, { omit: 'transactions' }>
 > {
   declare _id: CreationOptional<number>;
   declare date_id: ForeignKey<CalendarMaster['_id']>;
   declare date: string | DateTime;
   declare name: string;
-  declare emi_id: ForeignKey<EMIMaster>;
+  declare emi_id: ForeignKey<EMIMaster['_id']>;
   declare amount: number;
   declare category_id: ForeignKey<AssetCategoryMaster['_id']>;
 
@@ -31,6 +47,26 @@ export class AssetMaster extends Model<
   declare calendarRecord?: NonAttribute<CalendarMaster>;
   declare emiRecord?: NonAttribute<EMIMaster>;
   declare assetCategory?: NonAttribute<AssetCategoryMaster>;
+
+  declare getTransactions: HasManyGetAssociationsMixin<Expenses>;
+  declare addTransaction: HasManyAddAssociationMixin<Expenses, number>;
+  declare addTransactions: HasManyAddAssociationsMixin<Expenses, number>;
+  declare setTransactions: HasManySetAssociationsMixin<Expenses, number>;
+  declare removeTransaction: HasManyRemoveAssociationMixin<Expenses, number>;
+  declare removeTransactions: HasManyRemoveAssociationsMixin<Expenses, number>;
+  declare hasTransaction: HasManyHasAssociationMixin<Expenses, number>;
+  declare hasTransactions: HasManyHasAssociationsMixin<Expenses, number>;
+  declare countTransactions: HasManyCountAssociationsMixin;
+  declare createTransaction: HasManyCreateAssociationMixin<
+    Expenses,
+    'asset_id'
+  >;
+
+  declare transactions?: NonAttribute<Expenses[]>;
+
+  declare static associations: {
+    transactions: Association<AssetMaster, Expenses>;
+  };
 }
 
 /**

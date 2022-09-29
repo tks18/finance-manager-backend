@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.1-2](https://github.com/tks18/node-express-template/compare/v0.0.1-1...v0.0.1-2) (2022-09-29)
+
+
+### CI 🛠
+
+* **scripts:** add a script for preparing the build and publishing it ([0844a63](https://github.com/tks18/node-express-template/commit/0844a632248c265e3305638dbc7933435ebc1600))
+
+
+### Features 🔥
+
+* **models:** add expenses transacation table along with relationships ([bb22528](https://github.com/tks18/node-express-template/commit/bb22528b551f32e11ab8116ff92b483e753c81ef))
+* **models:** add incomes transaction table along with relationships ([2b81579](https://github.com/tks18/node-express-template/commit/2b815792aba1ce6686f2d55c6ef18f83307cbe79))
+* **models:** add investments transaction table ([3ac899c](https://github.com/tks18/node-express-template/commit/3ac899c73ec13193a6b184444212e928dc9c1a57))
+* **models:** add market-data transaction table ([081950c](https://github.com/tks18/node-express-template/commit/081950c6bedddab5c9e01f506596418a563d9cad))
+* **models:** add opening balances transaction table ([23fcd26](https://github.com/tks18/node-express-template/commit/23fcd26fc84cb1636f5f7cdd742797a3a91f33be))
+* **models:** write relationships for asset master table ([5826d52](https://github.com/tks18/node-express-template/commit/5826d5293486f0ba2740a2d63c6d0f5b0cc191fb))
+* **models:** write relationships for calendar master table ([56249f9](https://github.com/tks18/node-express-template/commit/56249f9d408a18b253823859322ae83fdbae91bf))
+* **models:** write relationships for investment master table ([8599004](https://github.com/tks18/node-express-template/commit/8599004741d5de8082b39ee80c2a69f3d1faab9e))
+* **models:** write relationships for other masters - bank, emi, debit, credit card, insurane ([d922bea](https://github.com/tks18/node-express-template/commit/d922bea2dde31d1d1323a2e4cdda1ee29b2b0bb5))
+* **plugins:** write a calendar builder plugin for building calendar master table ([b46fd8f](https://github.com/tks18/node-express-template/commit/b46fd8f6825d96aae6d00cfb3e70a510f5d1a990))
+
 ### [0.0.1-1](https://github.com/tks18/node-express-template/compare/v0.0.1-0...v0.0.1-1) (2022-09-28)
 
 

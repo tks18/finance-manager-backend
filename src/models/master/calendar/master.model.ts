@@ -1,5 +1,14 @@
 import { Model, DataTypes } from 'sequelize';
-import { AssetMaster, EMIMaster, InsuranceMaster } from '@models';
+import {
+  AssetMaster,
+  EMIMaster,
+  InsuranceMaster,
+  Incomes,
+  Expenses,
+  Investments,
+  OpeningBalances,
+  MarketData,
+} from '@models';
 import { DateTime } from 'luxon';
 import type {
   Sequelize,
@@ -24,8 +33,36 @@ import type {
  * @class Calendar Master Table
  */
 export class CalendarMaster extends Model<
-  InferAttributes<CalendarMaster>,
-  InferCreationAttributes<CalendarMaster>
+  InferAttributes<
+    CalendarMaster,
+    {
+      omit:
+        | 'assets'
+        | 'EMIStartRecords'
+        | 'EMIEndRecords'
+        | 'insurances'
+        | 'incomes'
+        | 'expenses'
+        | 'investments'
+        | 'openingBalances'
+        | 'marketRecords';
+    }
+  >,
+  InferCreationAttributes<
+    CalendarMaster,
+    {
+      omit:
+        | 'assets'
+        | 'EMIStartRecords'
+        | 'EMIEndRecords'
+        | 'insurances'
+        | 'incomes'
+        | 'expenses'
+        | 'investments'
+        | 'openingBalances'
+        | 'marketRecords';
+    }
+  >
 > {
   declare _id: CreationOptional<number>;
   declare date: string | DateTime;
@@ -138,11 +175,122 @@ export class CalendarMaster extends Model<
 
   declare insurances?: NonAttribute<InsuranceMaster[]>;
 
+  // Incomes
+  declare getIncomes: HasManyGetAssociationsMixin<Incomes>;
+  declare addIncome: HasManyAddAssociationMixin<Incomes, number>;
+  declare addIncomes: HasManyAddAssociationsMixin<Incomes, number>;
+  declare setIncomes: HasManySetAssociationsMixin<Incomes, number>;
+  declare removeIncome: HasManyRemoveAssociationMixin<Incomes, number>;
+  declare removeIncomes: HasManyRemoveAssociationsMixin<Incomes, number>;
+  declare hasIncome: HasManyHasAssociationMixin<Incomes, number>;
+  declare hasIncomes: HasManyHasAssociationsMixin<Incomes, number>;
+  declare countIncomes: HasManyCountAssociationsMixin;
+  declare createIncome: HasManyCreateAssociationMixin<Incomes, 'date_id'>;
+
+  declare incomes?: NonAttribute<Incomes[]>;
+
+  // Expenses
+  declare getExpenses: HasManyGetAssociationsMixin<Expenses>;
+  declare addExpense: HasManyAddAssociationMixin<Expenses, number>;
+  declare addExpenses: HasManyAddAssociationsMixin<Expenses, number>;
+  declare setExpenses: HasManySetAssociationsMixin<Expenses, number>;
+  declare removeExpense: HasManyRemoveAssociationMixin<Expenses, number>;
+  declare removeExpenses: HasManyRemoveAssociationsMixin<Expenses, number>;
+  declare hasExpense: HasManyHasAssociationMixin<Expenses, number>;
+  declare hasExpenses: HasManyHasAssociationsMixin<Expenses, number>;
+  declare countExpenses: HasManyCountAssociationsMixin;
+  declare createExpense: HasManyCreateAssociationMixin<Expenses, 'date_id'>;
+
+  declare expenses?: NonAttribute<Expenses[]>;
+
+  // Investments
+  declare getInvestments: HasManyGetAssociationsMixin<Investments>;
+  declare addInvestment: HasManyAddAssociationMixin<Investments, number>;
+  declare addInvestments: HasManyAddAssociationsMixin<Investments, number>;
+  declare setInvestments: HasManySetAssociationsMixin<Investments, number>;
+  declare removeInvestment: HasManyRemoveAssociationMixin<Investments, number>;
+  declare removeInvestments: HasManyRemoveAssociationsMixin<
+    Investments,
+    number
+  >;
+  declare hasInvestment: HasManyHasAssociationMixin<Investments, number>;
+  declare hasInvestments: HasManyHasAssociationsMixin<Investments, number>;
+  declare countInvestments: HasManyCountAssociationsMixin;
+  declare createInvestment: HasManyCreateAssociationMixin<
+    Investments,
+    'date_id'
+  >;
+
+  declare investments?: NonAttribute<Investments[]>;
+
+  // Opening Balances
+  declare getOpeningBalances: HasManyGetAssociationsMixin<OpeningBalances>;
+  declare addOpeningBalance: HasManyAddAssociationMixin<
+    OpeningBalances,
+    number
+  >;
+  declare addOpeningBalances: HasManyAddAssociationsMixin<
+    OpeningBalances,
+    number
+  >;
+  declare setOpeningBalances: HasManySetAssociationsMixin<
+    OpeningBalances,
+    number
+  >;
+  declare removeOpeningBalance: HasManyRemoveAssociationMixin<
+    OpeningBalances,
+    number
+  >;
+  declare removeOpeningBalances: HasManyRemoveAssociationsMixin<
+    OpeningBalances,
+    number
+  >;
+  declare hasOpeningBalance: HasManyHasAssociationMixin<
+    OpeningBalances,
+    number
+  >;
+  declare hasOpeningBalances: HasManyHasAssociationsMixin<
+    OpeningBalances,
+    number
+  >;
+  declare countOpeningBalances: HasManyCountAssociationsMixin;
+  declare createOpeningBalance: HasManyCreateAssociationMixin<
+    OpeningBalances,
+    'date_id'
+  >;
+
+  declare openingBalances?: NonAttribute<OpeningBalances[]>;
+
+  // Market Data
+  declare getMarketRecords: HasManyGetAssociationsMixin<MarketData>;
+  declare addMarketRecord: HasManyAddAssociationMixin<MarketData, number>;
+  declare addMarketRecords: HasManyAddAssociationsMixin<MarketData, number>;
+  declare setMarketRecords: HasManySetAssociationsMixin<MarketData, number>;
+  declare removeMarketRecord: HasManyRemoveAssociationMixin<MarketData, number>;
+  declare removeMarketRecords: HasManyRemoveAssociationsMixin<
+    MarketData,
+    number
+  >;
+  declare hasMarketRecord: HasManyHasAssociationMixin<MarketData, number>;
+  declare hasMarketRecords: HasManyHasAssociationsMixin<MarketData, number>;
+  declare countMarketRecords: HasManyCountAssociationsMixin;
+  declare createMarketRecord: HasManyCreateAssociationMixin<
+    MarketData,
+    'date_id'
+  >;
+
+  declare marketRecords?: NonAttribute<MarketData[]>;
+
   declare static associations: {
     assets: Association<CalendarMaster, AssetMaster>;
-    EMIStartRecords: Association<CalendarMaster, EMIMaster>;
-    EMIEndRecords: Association<CalendarMaster, EMIMaster>;
+    emiStartRecords: Association<CalendarMaster, EMIMaster>;
+    emiEndRecords: Association<CalendarMaster, EMIMaster>;
     insurances: Association<CalendarMaster, InsuranceMaster>;
+    incomes: Association<CalendarMaster, Incomes>;
+    expenses: Association<CalendarMaster, Expenses>;
+    investments: Association<CalendarMaster, Investments>;
+    openingBalances: Association<CalendarMaster, OpeningBalances>;
+    marketRecords: Association<CalendarMaster, MarketData>;
   };
 }
 

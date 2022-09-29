@@ -1,5 +1,5 @@
 import { Model, DataTypes } from 'sequelize';
-import { IncomeCategoryMaster } from './category.model';
+import { IncomeCategoryMaster, Incomes } from '@models';
 import type {
   Sequelize,
   InferAttributes,
@@ -7,14 +7,25 @@ import type {
   CreationOptional,
   ForeignKey,
   NonAttribute,
+  HasManyGetAssociationsMixin,
+  HasManyAddAssociationMixin,
+  HasManyAddAssociationsMixin,
+  HasManySetAssociationsMixin,
+  HasManyRemoveAssociationMixin,
+  HasManyRemoveAssociationsMixin,
+  HasManyHasAssociationMixin,
+  HasManyHasAssociationsMixin,
+  HasManyCountAssociationsMixin,
+  HasManyCreateAssociationMixin,
+  Association,
 } from 'sequelize';
 
 /**
  * @class Income Master Table
  */
 export class IncomeMaster extends Model<
-  InferAttributes<IncomeMaster>,
-  InferCreationAttributes<IncomeMaster>
+  InferAttributes<IncomeMaster, { omit: 'transactions' }>,
+  InferCreationAttributes<IncomeMaster, { omit: 'transactions' }>
 > {
   declare _id: CreationOptional<number>;
   declare name: string;
@@ -28,6 +39,26 @@ export class IncomeMaster extends Model<
   declare updatedAt: CreationOptional<Date>;
 
   declare incomeCategory?: NonAttribute<IncomeCategoryMaster>;
+
+  declare getTransactions: HasManyGetAssociationsMixin<Incomes>;
+  declare addTransaction: HasManyAddAssociationMixin<Incomes, number>;
+  declare addTransactions: HasManyAddAssociationsMixin<Incomes, number>;
+  declare setTransactions: HasManySetAssociationsMixin<Incomes, number>;
+  declare removeTransaction: HasManyRemoveAssociationMixin<Incomes, number>;
+  declare removeTransactions: HasManyRemoveAssociationsMixin<Incomes, number>;
+  declare hasTransaction: HasManyHasAssociationMixin<Incomes, number>;
+  declare hasTransactions: HasManyHasAssociationsMixin<Incomes, number>;
+  declare countTransactions: HasManyCountAssociationsMixin;
+  declare createTransaction: HasManyCreateAssociationMixin<
+    Incomes,
+    'master_id'
+  >;
+
+  declare transactions?: NonAttribute<Incomes[]>;
+
+  declare static associations: {
+    transactions: Association<IncomeMaster, Incomes>;
+  };
 }
 
 /**

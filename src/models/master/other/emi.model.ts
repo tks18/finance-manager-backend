@@ -1,6 +1,11 @@
 import { DateTime } from 'luxon';
 import { Model, DataTypes } from 'sequelize';
-import { CalendarMaster, CreditCardMaster, AssetMaster } from '@models';
+import {
+  CalendarMaster,
+  CreditCardMaster,
+  AssetMaster,
+  Expenses,
+} from '@models';
 import type {
   Sequelize,
   InferAttributes,
@@ -25,8 +30,8 @@ import type {
  * @class EMI Master Table
  */
 export class EMIMaster extends Model<
-  InferAttributes<EMIMaster, { omit: 'assets' }>,
-  InferCreationAttributes<EMIMaster, { omit: 'assets' }>
+  InferAttributes<EMIMaster, { omit: 'assets' | 'transactions' }>,
+  InferCreationAttributes<EMIMaster, { omit: 'assets' | 'transactions' }>
 > {
   declare _id: CreationOptional<number>;
   declare credit_card_id: ForeignKey<CreditCardMaster['_id']>;
@@ -48,6 +53,10 @@ export class EMIMaster extends Model<
   declare createdAt: CreationOptional<Date>;
   declare updatedAt: CreationOptional<Date>;
 
+  declare creditCard?: NonAttribute<CreditCardMaster>;
+  declare startCalendarDateRecord?: NonAttribute<CalendarMaster>;
+  declare endCalendarDateRecord?: NonAttribute<CalendarMaster>;
+
   declare getAssets: HasManyGetAssociationsMixin<AssetMaster>;
   declare addAsset: HasManyAddAssociationMixin<AssetMaster, number>;
   declare addAssets: HasManyAddAssociationsMixin<AssetMaster, number>;
@@ -61,12 +70,22 @@ export class EMIMaster extends Model<
 
   declare assets?: NonAttribute<AssetMaster[]>;
 
-  declare creditCard?: NonAttribute<CreditCardMaster>;
-  declare startCalendarDateRecord?: NonAttribute<CalendarMaster>;
-  declare endCalendarDateRecord?: NonAttribute<CalendarMaster>;
+  declare getTransactions: HasManyGetAssociationsMixin<Expenses>;
+  declare addTransaction: HasManyAddAssociationMixin<Expenses, number>;
+  declare addTransactions: HasManyAddAssociationsMixin<Expenses, number>;
+  declare setTransactions: HasManySetAssociationsMixin<Expenses, number>;
+  declare removeTransaction: HasManyRemoveAssociationMixin<Expenses, number>;
+  declare removeTransactions: HasManyRemoveAssociationsMixin<Expenses, number>;
+  declare hasTransaction: HasManyHasAssociationMixin<Expenses, number>;
+  declare hasTransactions: HasManyHasAssociationsMixin<Expenses, number>;
+  declare countTransactions: HasManyCountAssociationsMixin;
+  declare createTransaction: HasManyCreateAssociationMixin<Expenses, 'emi_id'>;
+
+  declare transactions?: NonAttribute<Expenses[]>;
 
   declare static associations: {
     assets: Association<EMIMaster, AssetMaster>;
+    transactions: Association<EMIMaster, Expenses>;
   };
 }
 
@@ -77,12 +96,12 @@ function defineRelationships(): void {
   CalendarMaster.hasMany(EMIMaster, {
     sourceKey: '_id',
     foreignKey: 'emi_start_date_id',
-    as: 'EMIStartRecords',
+    as: 'emiStartRecords',
   });
   CalendarMaster.hasMany(EMIMaster, {
     sourceKey: '_id',
     foreignKey: 'emi_end_date_id',
-    as: 'EMIEndRecords',
+    as: 'emiEndRecords',
   });
   CreditCardMaster.hasMany(EMIMaster, {
     sourceKey: '_id',
