@@ -1,8 +1,10 @@
-import {
+import type { Model, ModelStatic } from 'sequelize';
+import type {
   IAddDatabaseResult,
   IEditDatabaseResult,
   IDeleteDatabaseResult,
 } from '@plugins/auth/helpers/types';
+import type { IDBHandlerModelOptions } from '@plugins/server/generators';
 
 export interface Routes {
   get: string[];
@@ -10,6 +12,14 @@ export interface Routes {
   put: string[];
   patch: string[];
   delete: string[];
+}
+
+interface IDBRouteConfig {
+  path: string;
+  model?: ModelStatic<Model>;
+  modelName?: string;
+  routes?: IDBRouteConfig[];
+  options?: IDBHandlerModelOptions;
 }
 
 export interface ISuccessResponse {

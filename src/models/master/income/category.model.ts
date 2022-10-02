@@ -67,7 +67,7 @@ export function initIncomeCategoryMaster(sequelize: Sequelize) {
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
-      category: DataTypes.STRING,
+      category: { allowNull: false, type: DataTypes.STRING },
       createdAt: DataTypes.DATE,
       updatedAt: DataTypes.DATE,
     },

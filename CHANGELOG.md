@@ -2,6 +2,57 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0](https://github.com/tks18/node-express-template/compare/v0.0.1-2...v1.0.0) (2022-10-02)
+
+
+### Bug Fixes 🛠
+
+* **models:** add necessary constraints for fact tables ([420e272](https://github.com/tks18/node-express-template/commit/420e2724e1e7f3eac6267dc6a3331cd65ff43ec1))
+* **models:** add necessary constraints for fields in master tables ([869b654](https://github.com/tks18/node-express-template/commit/869b65405e2410c0c9e3e1848e391889f204ebf0))
+
+
+### Docs 📃
+
+* **plugins/server:** write jsdoc for function ([f615b6c](https://github.com/tks18/node-express-template/commit/f615b6c5ca02fe4af4a342bba94fd3b9f9b3f67a))
+
+
+### Build System 🏗
+
+* **package:** add bcrypt, downgrade dot-prop for compatibility ([c18617c](https://github.com/tks18/node-express-template/commit/c18617c1845371a40826bc3be9f7e70503072aa5))
+
+
+### Code Refactoring 🖌
+
+* **models:** refactor model index file to import dynamically ([a86a17a](https://github.com/tks18/node-express-template/commit/a86a17ad74ac0aaa882d52b4645ddd6e8e86b3ab))
+* **plugins/axios:** fix exports ([fbbd720](https://github.com/tks18/node-express-template/commit/fbbd7203e194cdc30c546149f92526fec2c3e1f6))
+* **plugins/server:** fix exports ([d95c5ec](https://github.com/tks18/node-express-template/commit/d95c5ecb85678d100788f0992326935985e333f6))
+* **plugins/server:** fix exports and imports ([2a3eed5](https://github.com/tks18/node-express-template/commit/2a3eed57f010ef5a922d1d9e0eda0019a9320b0d))
+* **plugins/server:** fix imports ([46e3e2d](https://github.com/tks18/node-express-template/commit/46e3e2d6e673fe301bb732ae73e71394dd793f89))
+* **plugins:** fix exports ([bf3a244](https://github.com/tks18/node-express-template/commit/bf3a244ebd042915f55886f8d0eebac42875b8dc))
+* **types:** declare x-session-header in express declaration ([6457550](https://github.com/tks18/node-express-template/commit/64575505389149fb5655d1a1c217b92058190e26))
+
+
+### Features 🔥
+
+* **express-database-handler:** add a function for pushing docs into DB ([e1add17](https://github.com/tks18/node-express-template/commit/e1add1702ea0fdca46b046fa71d887d78861bc01))
+* **express-database-handler:** add a function for viewing docs from DB ([6c45419](https://github.com/tks18/node-express-template/commit/6c454194a85e55cb9e899fe54b506aa453ac3f99))
+* **express-database-handler:** add functions for editing docs and deleting docs from database ([5b67d4e](https://github.com/tks18/node-express-template/commit/5b67d4eb3e363b9db2ff6d3fe7ab3864ecfc2c6d))
+* **express-database-handler:** write a class for database handler functions ([96e48e8](https://github.com/tks18/node-express-template/commit/96e48e8594793fa70e89f5fd10a5f9810c63b659))
+* **express-database-handler:** write a helper function for handling filter object from request ([dc382be](https://github.com/tks18/node-express-template/commit/dc382bee4ef48dcb069a65ea2cf14549ea6bda58))
+* **express-database-handler:** write a helper function for handling include objects from request ([9d0dc7f](https://github.com/tks18/node-express-template/commit/9d0dc7f7581468127f218a477832b8a30cec3fa2))
+* **express-database-handler:** write a helper function for handling order objects from request ([ee31990](https://github.com/tks18/node-express-template/commit/ee319907496df655c076c6c68359f8d75c0ceb58))
+* **models:** add a model map which maps string to model for include operations ([c1daf16](https://github.com/tks18/node-express-template/commit/c1daf16d1b99cfdcea5212ade7986324c4a098bc))
+* **models:** add user model for authentication of users ([b443fbf](https://github.com/tks18/node-express-template/commit/b443fbf33b422baac4b7ab4c9bd85d9f832fa75b))
+* **plugins/calendar-builder:** only add incremental rows to database ([19da973](https://github.com/tks18/node-express-template/commit/19da97362ee01ce88f6b5c24cdf631b23efb1fb3))
+* **plugins/jwt:** introduce JWT operations for user verification ([3df53d3](https://github.com/tks18/node-express-template/commit/3df53d30c1a12babb4f4255c5a9971a94c170bf8))
+* **plugins/middlewares:** write cors, jwt middleware for express ([7e5bb54](https://github.com/tks18/node-express-template/commit/7e5bb540794f23da997abf1141ed682adfd957b9))
+* **plugins/server:** write a server helper function for Hosting DB Routes ([ddbb7b2](https://github.com/tks18/node-express-template/commit/ddbb7b2ca533e0560e69a5efa25d959c44dc7fa7))
+* **routes/data:** write the DB Route Config to Automate Hosting of Routes ([bf4c334](https://github.com/tks18/node-express-template/commit/bf4c334e5ac88d5420a7c6a6d0e0b1d6851ec30a))
+* **routes/setup:** add routes for initial setup functions ([9054c97](https://github.com/tks18/node-express-template/commit/9054c9750500d4d77f0af0c8e8d942f52b9e7eb7))
+* **routes:** add all base paths, add paths for handling 404 paths ([f3500c2](https://github.com/tks18/node-express-template/commit/f3500c22f58ad8ac8f2921b3febe4ff5bb781259))
+* **routes:** host the config path using the config handler ([0c8821c](https://github.com/tks18/node-express-template/commit/0c8821c49949ac1f71987d162d577bc2c4a0f7b3))
+* **routes:** write routes for user - register, signin, verify operations ([e51432f](https://github.com/tks18/node-express-template/commit/e51432f35bad2dbcf20e0de6f376be3d27462b72))
+
 ### [0.0.1-2](https://github.com/tks18/node-express-template/compare/v0.0.1-1...v0.0.1-2) (2022-09-29)
 
 

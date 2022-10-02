@@ -1,1 +1,1 @@
-export { default } from './interceptor';
+export * from './interceptor';

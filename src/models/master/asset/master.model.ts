@@ -128,18 +128,16 @@ export function initAssetMaster(sequelize: Sequelize): void {
         },
       },
       date: {
+        allowNull: false,
         type: DataTypes.DATEONLY,
         get() {
           const value = String(this.getDataValue('date'));
-          return DateTime.fromFormat(value, 'yyyy-LL-dd');
-        },
-        set(value: DateTime) {
-          this.setDataValue('date', value.toFormat('yyyy-LL-dd'));
+          return DateTime.fromFormat(value, 'yyyy-LL-dd').toISODate();
         },
       },
-      name: DataTypes.STRING,
+      name: { allowNull: false, type: DataTypes.STRING },
       emi_id: DataTypes.INTEGER,
-      amount: DataTypes.DECIMAL,
+      amount: { allowNull: false, type: DataTypes.DECIMAL },
       category_id: {
         allowNull: false,
         type: DataTypes.INTEGER,

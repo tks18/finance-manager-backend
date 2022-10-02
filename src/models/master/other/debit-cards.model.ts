@@ -34,7 +34,7 @@ export class DebitCardMaster extends Model<
   declare createdAt: CreationOptional<Date>;
   declare updatedAt: CreationOptional<Date>;
 
-  declare bank?: NonAttribute<BankMaster>;
+  declare bankRecord?: NonAttribute<BankMaster>;
 }
 
 /**
@@ -49,7 +49,7 @@ function defineRelationships(): void {
   DebitCardMaster.belongsTo(BankMaster, {
     targetKey: '_id',
     foreignKey: 'bank_id',
-    as: 'bank',
+    as: 'bankRecord',
   });
 }
 
@@ -67,9 +67,9 @@ export function initDebitCardMaster(sequelize: Sequelize): void {
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
-      card_name: DataTypes.STRING,
-      card_type: DataTypes.STRING,
-      card_gateway_vendor: DataTypes.STRING,
+      card_name: { allowNull: false, type: DataTypes.STRING },
+      card_type: { allowNull: false, type: DataTypes.STRING },
+      card_gateway_vendor: { allowNull: false, type: DataTypes.STRING },
       bank_id: {
         allowNull: false,
         type: DataTypes.INTEGER,
@@ -78,17 +78,17 @@ export function initDebitCardMaster(sequelize: Sequelize): void {
           key: '_id',
         },
       },
-      card_no: DataTypes.STRING,
-      card_expiry_month: DataTypes.INTEGER,
-      card_expiry_year: DataTypes.INTEGER,
-      card_cvv_code: DataTypes.INTEGER,
-      is_international: DataTypes.BOOLEAN,
-      atm_limit: DataTypes.DECIMAL,
-      ecom_limit: DataTypes.DECIMAL,
-      tap_enabled: DataTypes.BOOLEAN,
-      tap_limit: DataTypes.DECIMAL,
-      pos_limit: DataTypes.DECIMAL,
-      international_limit: DataTypes.DECIMAL,
+      card_no: { allowNull: false, type: DataTypes.STRING },
+      card_expiry_month: { allowNull: false, type: DataTypes.INTEGER },
+      card_expiry_year: { allowNull: false, type: DataTypes.INTEGER },
+      card_cvv_code: { allowNull: false, type: DataTypes.INTEGER },
+      is_international: { allowNull: false, type: DataTypes.BOOLEAN },
+      atm_limit: { allowNull: false, type: DataTypes.DECIMAL },
+      ecom_limit: { allowNull: false, type: DataTypes.DECIMAL },
+      tap_enabled: { allowNull: false, type: DataTypes.DECIMAL },
+      tap_limit: { allowNull: false, type: DataTypes.DECIMAL },
+      pos_limit: { allowNull: false, type: DataTypes.DECIMAL },
+      international_limit: { allowNull: false, type: DataTypes.DECIMAL },
       createdAt: DataTypes.DATE,
       updatedAt: DataTypes.DATE,
     },

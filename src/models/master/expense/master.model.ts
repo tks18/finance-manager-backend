@@ -88,8 +88,8 @@ export function initExpenseMaster(sequelize: Sequelize) {
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
-      name: DataTypes.STRING,
-      type: DataTypes.STRING,
+      name: { allowNull: false, type: DataTypes.STRING },
+      type: { allowNull: false, type: DataTypes.STRING },
       category_id: {
         allowNull: false,
         type: DataTypes.INTEGER,

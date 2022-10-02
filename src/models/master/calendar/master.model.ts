@@ -314,7 +314,7 @@ export function initCalendarMaster(sequelize: Sequelize) {
         type: DataTypes.DATEONLY,
         get() {
           const value = String(this.getDataValue('date'));
-          return DateTime.fromFormat(value, 'yyyy-LL-dd');
+          return DateTime.fromFormat(value, 'yyyy-LL-dd').toISODate();
         },
         set(value: DateTime) {
           this.setDataValue('date', value.toFormat('yyyy-LL-dd'));
@@ -330,7 +330,7 @@ export function initCalendarMaster(sequelize: Sequelize) {
         type: DataTypes.DATEONLY,
         get() {
           const value = String(this.getDataValue('start_of_week'));
-          return DateTime.fromFormat(value, 'yyyy-LL-dd');
+          return DateTime.fromFormat(value, 'yyyy-LL-dd').toISODate();
         },
         set(value: DateTime) {
           this.setDataValue('start_of_week', value.toFormat('yyyy-LL-dd'));
@@ -341,7 +341,7 @@ export function initCalendarMaster(sequelize: Sequelize) {
         type: DataTypes.DATEONLY,
         get() {
           const value = String(this.getDataValue('end_of_week'));
-          return DateTime.fromFormat(value, 'yyyy-LL-dd');
+          return DateTime.fromFormat(value, 'yyyy-LL-dd').toISODate();
         },
         set(value: DateTime) {
           this.setDataValue('end_of_week', value.toFormat('yyyy-LL-dd'));
@@ -355,7 +355,7 @@ export function initCalendarMaster(sequelize: Sequelize) {
         type: DataTypes.DATEONLY,
         get() {
           const value = String(this.getDataValue('start_of_month'));
-          return DateTime.fromFormat(value, 'yyyy-LL-dd');
+          return DateTime.fromFormat(value, 'yyyy-LL-dd').toISODate();
         },
         set(value: DateTime) {
           this.setDataValue('start_of_month', value.toFormat('yyyy-LL-dd'));
@@ -367,7 +367,7 @@ export function initCalendarMaster(sequelize: Sequelize) {
         type: DataTypes.DATEONLY,
         get() {
           const value = String(this.getDataValue('end_of_month'));
-          return DateTime.fromFormat(value, 'yyyy-LL-dd');
+          return DateTime.fromFormat(value, 'yyyy-LL-dd').toISODate();
         },
         set(value: DateTime) {
           this.setDataValue('end_of_month', value.toFormat('yyyy-LL-dd'));
@@ -382,7 +382,7 @@ export function initCalendarMaster(sequelize: Sequelize) {
         type: DataTypes.DATEONLY,
         get() {
           const value = String(this.getDataValue('start_of_quarter'));
-          return DateTime.fromFormat(value, 'yyyy-LL-dd');
+          return DateTime.fromFormat(value, 'yyyy-LL-dd').toISODate();
         },
         set(value: DateTime) {
           this.setDataValue('start_of_quarter', value.toFormat('yyyy-LL-dd'));
@@ -394,7 +394,7 @@ export function initCalendarMaster(sequelize: Sequelize) {
         type: DataTypes.DATEONLY,
         get() {
           const value = String(this.getDataValue('end_of_quarter'));
-          return DateTime.fromFormat(value, 'yyyy-LL-dd');
+          return DateTime.fromFormat(value, 'yyyy-LL-dd').toISODate();
         },
         set(value: DateTime) {
           this.setDataValue('end_of_quarter', value.toFormat('yyyy-LL-dd'));
@@ -408,7 +408,7 @@ export function initCalendarMaster(sequelize: Sequelize) {
         type: DataTypes.DATEONLY,
         get() {
           const value = String(this.getDataValue('start_of_year'));
-          return DateTime.fromFormat(value, 'yyyy-LL-dd');
+          return DateTime.fromFormat(value, 'yyyy-LL-dd').toISODate();
         },
         set(value: DateTime) {
           this.setDataValue('start_of_year', value.toFormat('yyyy-LL-dd'));
@@ -420,7 +420,7 @@ export function initCalendarMaster(sequelize: Sequelize) {
         type: DataTypes.DATEONLY,
         get() {
           const value = String(this.getDataValue('end_of_year'));
-          return DateTime.fromFormat(value, 'yyyy-LL-dd');
+          return DateTime.fromFormat(value, 'yyyy-LL-dd').toISODate();
         },
         set(value: DateTime) {
           this.setDataValue('end_of_year', value.toFormat('yyyy-LL-dd'));

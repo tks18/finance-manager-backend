@@ -40,7 +40,7 @@ const regexPrefixToString = (path: {
   return '[Unknown path]';
 };
 
-const getRoutes = function (app: IRouter): Routes {
+export const getAllRoutes = function (app: IRouter): Routes {
   const routes: Routes = {
     get: [],
     post: [],
@@ -93,5 +93,3 @@ const getRoutes = function (app: IRouter): Routes {
 
   return routes;
 };
-
-export default getRoutes;
