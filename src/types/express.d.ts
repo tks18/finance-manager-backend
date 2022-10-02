@@ -1,5 +1,5 @@
 declare module 'http' {
   interface IncomingHttpHeaders {
-    'x-secret-pass'?: string;
+    'x-session-token'?: string;
   }
 }
