@@ -1,4 +1,4 @@
-import sendResponse from '@plugins/server/helpers/send-response';
+import { sendResponse } from '@plugins/server/helpers';
 import { logger } from '@plugins';
 import { BaseError, InternalServerError } from '@plugins/errors';
 

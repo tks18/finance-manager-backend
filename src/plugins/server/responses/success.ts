@@ -1,4 +1,4 @@
-import sendResponse from '@plugins/server/helpers/send-response';
+import { sendResponse } from '@plugins/server/helpers';
 
 // Types
 import type { Response } from 'express';
