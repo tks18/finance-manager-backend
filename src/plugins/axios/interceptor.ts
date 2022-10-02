@@ -1,6 +1,6 @@
-import axios from 'axios';
+import { default as ax } from 'axios';
 
-const instance = axios.create();
+const instance = ax.create();
 
 // Add a request interceptor
 instance.interceptors.request.use(
@@ -25,4 +25,4 @@ instance.interceptors.response.use(
   (error) => Promise.reject(error),
 );
 
-export default instance;
+export const axios = instance;
