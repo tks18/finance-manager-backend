@@ -7,6 +7,6 @@ import type { Response } from 'express';
  * @param {number} status - HTTP Status Code to be Sent
  * @param {object} data - Data to be sent along with the Response
  */
-export default function <T>(res: Response, status: number, data: T): void {
+export function sendResponse<T>(res: Response, status: number, data: T): void {
   res.status(status).json(data);
 }
