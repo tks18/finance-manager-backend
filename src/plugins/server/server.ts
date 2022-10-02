@@ -52,7 +52,7 @@ export class ExpressServer {
   }
 
   /**
-   *
+   * Prepare Morgon Request Logger Middleware
    */
   private prepareLoggerMiddleware(): void {
     morgan.token('date', () => {
