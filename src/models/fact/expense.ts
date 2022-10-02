@@ -139,10 +139,7 @@ export function initExpenses(sequelize: Sequelize): void {
         type: DataTypes.DATEONLY,
         get() {
           const value = String(this.getDataValue('date'));
-          return DateTime.fromFormat(value, 'yyyy-LL-dd');
-        },
-        set(value: DateTime) {
-          this.setDataValue('date', value.toFormat('yyyy-LL-dd'));
+          return DateTime.fromFormat(value, 'yyyy-LL-dd').toISODate();
         },
       },
       master_id: {
@@ -182,8 +179,8 @@ export function initExpenses(sequelize: Sequelize): void {
           key: '_id',
         },
       },
-      amount: DataTypes.DECIMAL,
-      tax_allowable_amount: DataTypes.DECIMAL,
+      amount: { allowNull: false, type: DataTypes.DECIMAL },
+      tax_allowable_amount: { allowNull: false, type: DataTypes.DECIMAL },
       createdAt: DataTypes.DATE,
       updatedAt: DataTypes.DATE,
     },

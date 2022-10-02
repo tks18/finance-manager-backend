@@ -88,10 +88,7 @@ export function initMarketData(sequelize: Sequelize): void {
         type: DataTypes.DATEONLY,
         get() {
           const value = String(this.getDataValue('date'));
-          return DateTime.fromFormat(value, 'yyyy-LL-dd');
-        },
-        set(value: DateTime) {
-          this.setDataValue('date', value.toFormat('yyyy-LL-dd'));
+          return DateTime.fromFormat(value, 'yyyy-LL-dd').toISODate();
         },
       },
       master_id: {
@@ -102,12 +99,12 @@ export function initMarketData(sequelize: Sequelize): void {
           key: '_id',
         },
       },
-      open: DataTypes.DECIMAL,
-      high: DataTypes.DECIMAL,
-      low: DataTypes.DECIMAL,
-      close: DataTypes.DECIMAL,
-      adj_close: DataTypes.DECIMAL,
-      volume: DataTypes.DECIMAL,
+      open: { allowNull: false, type: DataTypes.DECIMAL },
+      high: { allowNull: false, type: DataTypes.DECIMAL },
+      low: { allowNull: false, type: DataTypes.DECIMAL },
+      close: { allowNull: false, type: DataTypes.DECIMAL },
+      adj_close: { allowNull: false, type: DataTypes.DECIMAL },
+      volume: { allowNull: false, type: DataTypes.DECIMAL },
       createdAt: DataTypes.DATE,
       updatedAt: DataTypes.DATE,
     },
