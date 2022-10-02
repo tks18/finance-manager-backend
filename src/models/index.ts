@@ -1,48 +1,29 @@
-import {
-  initCalendarMaster,
-  initExpenseCategoryMaster,
-  initExpenseMaster,
-  initIncomeCategoryMaster,
-  initIncomeMaster,
-  initInvestmentCategoryMaster,
-  initInvestmentMaster,
-  initBankMaster,
-  initCreditCardMaster,
-  initDebitCardMaster,
-  initEMIMaster,
-  initInsuranceMaster,
-  initAssetCategoryMaster,
-  initAssetMaster,
-} from './master';
-import {
-  initIncomes,
-  initExpenses,
-  initInvestments,
-  initOpeningBalances,
-  initMarketData,
-} from './fact';
+import * as masterTables from './master';
+import * as factTables from './fact';
+import * as authTables from './auth';
 import type { Sequelize } from 'sequelize';
 
 const allFunctions: ((sequelize: Sequelize) => void)[] = [
-  initCalendarMaster,
-  initExpenseCategoryMaster,
-  initExpenseMaster,
-  initIncomeCategoryMaster,
-  initIncomeMaster,
-  initInvestmentCategoryMaster,
-  initInvestmentMaster,
-  initBankMaster,
-  initCreditCardMaster,
-  initDebitCardMaster,
-  initEMIMaster,
-  initInsuranceMaster,
-  initAssetCategoryMaster,
-  initAssetMaster,
-  initIncomes,
-  initExpenses,
-  initInvestments,
-  initOpeningBalances,
-  initMarketData,
+  masterTables.initCalendarMaster,
+  masterTables.initExpenseCategoryMaster,
+  masterTables.initExpenseMaster,
+  masterTables.initIncomeCategoryMaster,
+  masterTables.initIncomeMaster,
+  masterTables.initInvestmentCategoryMaster,
+  masterTables.initInvestmentMaster,
+  masterTables.initBankMaster,
+  masterTables.initCreditCardMaster,
+  masterTables.initDebitCardMaster,
+  masterTables.initEMIMaster,
+  masterTables.initInsuranceMaster,
+  masterTables.initAssetCategoryMaster,
+  masterTables.initAssetMaster,
+  factTables.initIncomes,
+  factTables.initExpenses,
+  factTables.initInvestments,
+  factTables.initOpeningBalances,
+  factTables.initMarketData,
+  authTables.initUsers,
 ];
 
 /**
@@ -58,3 +39,4 @@ export function initAllModels(sequelize: Sequelize) {
 
 export * from './master';
 export * from './fact';
+export * from './auth';
