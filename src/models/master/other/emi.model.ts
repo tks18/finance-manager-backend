@@ -96,12 +96,12 @@ function defineRelationships(): void {
   CalendarMaster.hasMany(EMIMaster, {
     sourceKey: '_id',
     foreignKey: 'emi_start_date_id',
-    as: 'emiStartRecords',
+    as: 'EMIStartRecords',
   });
   CalendarMaster.hasMany(EMIMaster, {
     sourceKey: '_id',
     foreignKey: 'emi_end_date_id',
-    as: 'emiEndRecords',
+    as: 'EMIEndRecords',
   });
   CreditCardMaster.hasMany(EMIMaster, {
     sourceKey: '_id',
@@ -164,35 +164,31 @@ export function initEMIMaster(sequelize: Sequelize): void {
         },
       },
       emi_start_date: {
+        allowNull: false,
         type: DataTypes.DATEONLY,
         get() {
           const value = String(this.getDataValue('emi_start_date'));
-          return DateTime.fromFormat(value, 'yyyy-LL-dd');
-        },
-        set(value: DateTime) {
-          this.setDataValue('emi_start_date', value.toFormat('yyyy-LL-dd'));
+          return DateTime.fromFormat(value, 'yyyy-LL-dd').toISODate();
         },
       },
       emi_end_date: {
+        allowNull: false,
         type: DataTypes.DATEONLY,
         get() {
           const value = String(this.getDataValue('emi_end_date'));
-          return DateTime.fromFormat(value, 'yyyy-LL-dd');
-        },
-        set(value: DateTime) {
-          this.setDataValue('emi_end_date', value.toFormat('yyyy-LL-dd'));
+          return DateTime.fromFormat(value, 'yyyy-LL-dd').toISODate();
         },
       },
-      payable_term: DataTypes.DECIMAL,
-      total_installments: DataTypes.INTEGER,
-      total_emi_payment: DataTypes.DECIMAL,
-      total_product_cost: DataTypes.DECIMAL,
-      interest: DataTypes.DECIMAL,
-      total_interest_payable: DataTypes.DECIMAL,
-      no_cost_emi_discount: DataTypes.DECIMAL,
-      emi_amount: DataTypes.DECIMAL,
-      processing_cost: DataTypes.DECIMAL,
-      processing_gst_component: DataTypes.DECIMAL,
+      payable_term: { allowNull: false, type: DataTypes.DECIMAL },
+      total_installments: { allowNull: false, type: DataTypes.DECIMAL },
+      total_emi_payment: { allowNull: false, type: DataTypes.DECIMAL },
+      total_product_cost: { allowNull: false, type: DataTypes.DECIMAL },
+      interest: { allowNull: false, type: DataTypes.DECIMAL },
+      total_interest_payable: { allowNull: false, type: DataTypes.DECIMAL },
+      no_cost_emi_discount: { allowNull: false, type: DataTypes.DECIMAL },
+      emi_amount: { allowNull: false, type: DataTypes.DECIMAL },
+      processing_cost: { allowNull: false, type: DataTypes.DECIMAL },
+      processing_gst_component: { allowNull: false, type: DataTypes.DECIMAL },
       createdAt: DataTypes.DATE,
       updatedAt: DataTypes.DATE,
     },

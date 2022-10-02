@@ -95,9 +95,9 @@ export function initInsuranceMaster(sequelize: Sequelize): void {
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
-      name: DataTypes.STRING,
-      type: DataTypes.STRING,
-      policy_no: DataTypes.STRING,
+      name: { allowNull: false, type: DataTypes.STRING },
+      type: { allowNull: false, type: DataTypes.STRING },
+      policy_no: { allowNull: false, type: DataTypes.STRING },
       date_id: {
         allowNull: false,
         type: DataTypes.INTEGER,
@@ -107,22 +107,21 @@ export function initInsuranceMaster(sequelize: Sequelize): void {
         },
       },
       purchase_date: {
+        allowNull: false,
         type: DataTypes.DATEONLY,
         get() {
           const value = String(this.getDataValue('purchase_date'));
-          return DateTime.fromFormat(value, 'yyyy-LL-dd');
-        },
-        set(value: DateTime) {
-          this.setDataValue('purchase_date', value.toFormat('yyyy-LL-dd'));
+          return DateTime.fromFormat(value, 'yyyy-LL-dd').toISODate();
         },
       },
-      amount_insured: DataTypes.DECIMAL,
-      cover_period_years: DataTypes.DECIMAL,
+      amount_insured: { allowNull: false, type: DataTypes.DECIMAL },
+      cover_period_years: { allowNull: false, type: DataTypes.DECIMAL },
       cover_period_start_date: {
+        allowNull: false,
         type: DataTypes.DATEONLY,
         get() {
           const value = String(this.getDataValue('cover_period_start_date'));
-          return DateTime.fromFormat(value, 'yyyy-LL-dd');
+          return DateTime.fromFormat(value, 'yyyy-LL-dd').toISODate();
         },
         set(value: DateTime) {
           this.setDataValue(
@@ -132,21 +131,16 @@ export function initInsuranceMaster(sequelize: Sequelize): void {
         },
       },
       cover_period_end_date: {
+        allowNull: false,
         type: DataTypes.DATEONLY,
         get() {
           const value = String(this.getDataValue('cover_period_end_date'));
-          return DateTime.fromFormat(value, 'yyyy-LL-dd');
-        },
-        set(value: DateTime) {
-          this.setDataValue(
-            'cover_period_end_date',
-            value.toFormat('yyyy-LL-dd'),
-          );
+          return DateTime.fromFormat(value, 'yyyy-LL-dd').toISODate();
         },
       },
-      ncb_allowance: DataTypes.DECIMAL,
-      premium_payable_term_type: DataTypes.STRING,
-      premium_payable: DataTypes.DECIMAL,
+      ncb_allowance: { allowNull: false, type: DataTypes.DECIMAL },
+      premium_payable_term_type: { allowNull: false, type: DataTypes.STRING },
+      premium_payable: { allowNull: false, type: DataTypes.DECIMAL },
       createdAt: DataTypes.DATE,
       updatedAt: DataTypes.DATE,
     },
