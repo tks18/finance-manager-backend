@@ -22,12 +22,12 @@ const router = express.Router();
 
 const { NODE_ENV } = process.env;
 
-router.use('/user', userPath);
-router.use('/setup', verifyToken, setupPath);
-router.use('/data', verifyToken, dataPath);
+router.use('/api/user', userPath);
+router.use('/api/setup', verifyToken, setupPath);
+router.use('/api/data', verifyToken, dataPath);
 
 // Respond with all the Endpoints
-router.post('/endpoints', (req: Request, res: Response) =>
+router.post('/api/endpoints', (req: Request, res: Response) =>
   new EndpointGenerator(res, router).serve(),
 );
 
