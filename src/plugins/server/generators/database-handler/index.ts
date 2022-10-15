@@ -1,4 +1,5 @@
 import express from 'express';
+import { sequelize } from '@plugins/db';
 import {
   addDatatoDatabase,
   viewDatafromDatabase,
@@ -9,6 +10,7 @@ import {
 // Types
 import { IRouter, Request, Response } from 'express';
 import { Model, ModelStatic } from 'sequelize';
+import { okResponse } from '@plugins/server/responses';
 
 export interface IDBHandlerModelOptions {
   add: boolean;
@@ -45,6 +47,36 @@ export class ExpressDatabaseHandler<T extends Model> {
     this.model = model;
     this.modelName = modelName;
     this.modelOptions = modelOptions;
+  }
+
+  /**
+   * Gets the Table Name from the Model Class
+   *
+   * @returns {string} - table name
+   */
+  get tableName() {
+    const table = this.model.getTableName();
+    if (typeof table === 'string') {
+      return table;
+    } else {
+      return table.tableName;
+    }
+  }
+
+  /**
+   * Common Express Handler for all models to get all columns in the table
+   *
+   * @param {Request} req - Express Request Object
+   * @param {Response} res - Express Response Object
+   */
+  public async getTableColumns(req: Request, res: Response) {
+    await sequelize
+      .query(
+        `SELECT column_name, data_type FROM information_schema.columns where table_name = '${this.tableName}'`,
+      )
+      .then((rows) => {
+        okResponse(res, rows[0]);
+      });
   }
 
   /**
@@ -94,6 +126,11 @@ export class ExpressDatabaseHandler<T extends Model> {
    */
   public serveAllRoutes(): IRouter {
     const router = express.Router();
+
+    router.post('/columns', (req, res) => {
+      void this.getTableColumns(req, res);
+    });
+
     if (this.modelOptions.add) {
       router.post('/add', (req, res) => {
         void this.add(req, res);
