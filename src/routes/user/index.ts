@@ -2,6 +2,7 @@
 import express, { RequestHandler } from 'express';
 import { Users } from '@models';
 import { signJwt, verifyJwt } from '@plugins/jwt';
+import { verifyToken } from '@plugins/server/middlewares';
 
 // Response Handlers
 import { errorResponseHandler } from '@plugins/server/responses';
@@ -11,7 +12,7 @@ import { okResponse } from '@plugins/server/responses';
 // Router
 const router = express.Router();
 
-router.post('/register', (async (req, res) => {
+router.post('/add', (async (req, res) => {
   try {
     const { name, email, password } = req.body;
     if (name && email && password) {
@@ -23,7 +24,9 @@ router.post('/register', (async (req, res) => {
       await newUser.hashPasswordnSave();
       const loginToken = signJwt(newUser);
       okResponse(res, {
+        _id: newUser._id,
         email: newUser.email,
+        name: newUser.name,
         token: loginToken,
       });
     } else {
@@ -48,7 +51,9 @@ router.post('/login', (async (req, res) => {
         if (authenticated) {
           const loginToken = signJwt(userDoc);
           okResponse(res, {
+            _id: userDoc._id,
             email: userDoc.email,
+            name: userDoc.name,
             token: loginToken,
           });
         } else {
@@ -59,6 +64,28 @@ router.post('/login', (async (req, res) => {
       }
     } else {
       throw new BadRequest('email, password', 'request.body');
+    }
+  } catch (e) {
+    errorResponseHandler(res, e);
+  }
+}) as RequestHandler);
+
+router.post('/get', verifyToken, (async (req, res) => {
+  try {
+    const { email } = req.body;
+    if (email) {
+      const userDoc = await Users.findOne({
+        where: {
+          email,
+        },
+      });
+      okResponse(res, {
+        _id: userDoc?._id,
+        email: userDoc?.email,
+        name: userDoc?.name,
+      });
+    } else {
+      throw new BadRequest('email', 'request.body');
     }
   } catch (e) {
     errorResponseHandler(res, e);
