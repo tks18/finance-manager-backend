@@ -24,7 +24,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tks18/node-express-template.git"
+    "url": "git+https://github.com/tks18/finance-manager-backend.git"
   },
   "keywords": [
     "Nodejs",
@@ -43,9 +43,9 @@
   },
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/tks18/node-express-template/issues"
+    "url": "https://github.com/tks18/finance-manager-backend/issues"
   },
-  "homepage": "https://github.com/tks18/node-express-template#readme",
+  "homepage": "https://github.com/tks18/finance-manager-backend#readme",
   "packageManager": "yarn@3.2.3",
   "devDependencies": {
     "@commitlint/cli": "^17.1.2",
