@@ -14,7 +14,7 @@ export interface Routes {
   delete: string[];
 }
 
-interface IDBRouteConfig {
+export interface IDBRouteConfig {
   path: string;
   model?: ModelStatic<Model>;
   modelName?: string;

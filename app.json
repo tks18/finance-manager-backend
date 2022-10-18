@@ -1,7 +1,7 @@
 {
   "apps": [
     {
-      "name": "express-server",
+      "name": "finance-manager-server",
       "script": "app.js",
       "exec_mode": "cluster",
       "env": {
