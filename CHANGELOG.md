@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0-0](https://github.com/tks18/finance-manager-backend/compare/v1.0.0...v1.1.0-0) (2022-10-18)
+
+
+### Others 🔧
+
+* **package:** update the git url in package.json ([d601e7b](https://github.com/tks18/finance-manager-backend/commit/d601e7b38b0a08dc6d2b20cc8a6046923a37222e))
+
+
+### Bug Fixes 🛠
+
+* fix some misc types ([91912b7](https://github.com/tks18/finance-manager-backend/commit/91912b75a68059435513115f0fa9259826a04cb8))
+* **routes:** serve all the api routes under /api path ([19b8973](https://github.com/tks18/finance-manager-backend/commit/19b897389bd807d95af2765eb9baee2646e2b0e3))
+
+
+### Features 🔥
+
+* **routes/user:** add a endpoint for getting user document ([6ae14de](https://github.com/tks18/finance-manager-backend/commit/6ae14deea9eb6d1fbfd2c5b9364f5a1c94679813))
+* **server/databasehandler:** write a new route for getting all columns in a table ([c6d6836](https://github.com/tks18/finance-manager-backend/commit/c6d683637d41ac496a41c6e7f75fa22a4d92c8b2))
+* **views:** add latest views ([634aff1](https://github.com/tks18/finance-manager-backend/commit/634aff1184dbc824eca1718a6c7d11b815db4426))
+
 ## [1.0.0](https://github.com/tks18/node-express-template/compare/v0.0.1-2...v1.0.0) (2022-10-02)
 
 
