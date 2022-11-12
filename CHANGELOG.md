@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/tks18/finance-manager-backend/compare/v1.1.0-0...v1.1.0) (2022-11-12)
+
+
+### Bug Fixes 🛠
+
+* **plugins/server/database-handler:** enable raw option for postgresql queries ([37c1599](https://github.com/tks18/finance-manager-backend/commit/37c1599edb48392edfe7b0f9749abcd73153b980))
+
 ## [1.1.0-0](https://github.com/tks18/finance-manager-backend/compare/v1.0.0...v1.1.0-0) (2022-10-18)
 
 
