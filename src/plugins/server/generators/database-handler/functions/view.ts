@@ -12,6 +12,7 @@ import type { Request, Response } from 'express';
 import type {
   Model,
   ModelStatic,
+  FindOptions,
   FindAttributeOptions,
   WhereOptions,
 } from 'sequelize';
@@ -46,6 +47,9 @@ export async function viewDatafromDatabase<T extends Model>(
 ) {
   try {
     const options: IFindOptions = req.body['options'];
+    const defaultOptions: FindOptions = {
+      raw: true,
+    };
     const includeMap = modelIncludeMap();
     const docs = await model.findAll(
       options
@@ -56,12 +60,13 @@ export async function viewDatafromDatabase<T extends Model>(
             include: handleInclude(options.include, includeMap),
             limit: options.limit && options.limit,
             offset: options.offset && options.offset,
+            ...defaultOptions,
           }
-        : {},
+        : defaultOptions,
     );
     okResponse(res, {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-      docs: docs.map((doc) => doc.toJSON()),
+      docs,
     });
   } catch (e) {
     errorResponseHandler(res, e);
