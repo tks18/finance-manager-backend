@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.2](https://github.com/tks18/finance-manager-backend/compare/v1.1.1...v1.1.2) (2022-12-06)
+
+
+### Bug Fixes 🛠
+
+* **plugins/server/dbhandler:** remove raw option for db query results ([b96fe84](https://github.com/tks18/finance-manager-backend/commit/b96fe8464c7f47ca624d160b1bfb40402dd01564))
+
+
+### Code Refactoring 🖌
+
+* **plugins/server/dbhandler:** add types for additional routes ([4d58dd0](https://github.com/tks18/finance-manager-backend/commit/4d58dd084f5018d0187e7bb66560ecd225765650))
+
+
+### Features 🔥
+
+* **plugins/server/dbhandler:** allow custom handlers to host additional routes ([6c46e4d](https://github.com/tks18/finance-manager-backend/commit/6c46e4d80ba21ba408a773f5740753cf959d4373))
+* **plugins/server:** add the additional route config for config helper ([4dce512](https://github.com/tks18/finance-manager-backend/commit/4dce5122a3c0aaa362347189a522097412ffad9b))
+* **routes/data:** add a additional route for calendar route to get date id ([73b1bef](https://github.com/tks18/finance-manager-backend/commit/73b1bef96612c946aaf02e7589dcfef0e4b53ac8))
+
 ### [1.1.1](https://github.com/tks18/finance-manager-backend/compare/v1.1.0...v1.1.1) (2022-11-12)
 
 
