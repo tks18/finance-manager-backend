@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.1](https://github.com/tks18/finance-manager-backend/compare/v2.0.0...v2.0.1) (2022-12-06)
+
+
+### Bug Fixes 🛠
+
+* **package:** remove helmet and x-xss which caused issues in local env ([8d98c24](https://github.com/tks18/finance-manager-backend/commit/8d98c24dac249c276cb08214f1e3bf6634123ce3))
+* **plugins/server:** fix local serving of files ([4882f61](https://github.com/tks18/finance-manager-backend/commit/4882f61c41ec18d366e348e710c0b07dd284dfee))
+
+
+### Features 🔥
+
+* **views:** fix csp tag ([dacd1db](https://github.com/tks18/finance-manager-backend/commit/dacd1db7e1946835875a143efe99001eba6fcac9))
+
 ## [2.0.0](https://github.com/tks18/finance-manager-backend/compare/v1.1.2...v2.0.0) (2022-12-06)
 
 
