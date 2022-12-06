@@ -3426,7 +3426,6 @@ __metadata:
     eslint-plugin-node: ^11.1.0
     eslint-plugin-promise: ^6.0.1
     express: ^4.18.1
-    helmet: ^6.0.0
     husky: ^8.0.1
     javascript-obfuscator: ^4.0.0
     jsdoc: ^3.6.11
@@ -3450,7 +3449,6 @@ __metadata:
     webpack-node-externals: ^3.0.0
     webpack-obfuscator: ^3.5.1
     winston: ^3.8.2
-    x-xss-protection: ^2.0.0
   languageName: unknown
   linkType: soft
 
@@ -4020,13 +4018,6 @@ __metadata:
   dependencies:
     function-bind: ^1.1.1
   checksum: b9ad53d53be4af90ce5d1c38331e712522417d017d5ef1ebd0507e07c2fbad8686fffb8e12ddecd4c39ca9b9b47431afbb975b8abf7f3c3b82c98e9aad052792
-  languageName: node
-  linkType: hard
-
-"helmet@npm:^6.0.0":
-  version: 6.0.0
-  resolution: "helmet@npm:6.0.0"
-  checksum: 0dd89d5b77c5334e815f5d29376ca7af0ad1007136890f497be3455d9ed9734e7203e13d9931e29e4d2ced1c632c52440f16d2a02e8835fd8b8706a12052faad
   languageName: node
   linkType: hard
 
@@ -8121,13 +8112,6 @@ __metadata:
   version: 1.0.2
   resolution: "wrappy@npm:1.0.2"
   checksum: 159da4805f7e84a3d003d8841557196034155008f817172d4e986bd591f74aa82aa7db55929a54222309e01079a65a92a9e6414da5a6aa4b01ee44a511ac3ee5
-  languageName: node
-  linkType: hard
-
-"x-xss-protection@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "x-xss-protection@npm:2.0.0"
-  checksum: 6ff141d9ea7067b27f5a14d0295f6c2e08ac8580255b3191888a39a58c1a71c8ad126f7ff23fdbef4b3d1d3e287860b863292acf545ef31a2254a520ef460591
   languageName: node
   linkType: hard
 
