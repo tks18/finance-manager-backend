@@ -122,9 +122,12 @@ export class ExpressDatabaseHandler<T extends Model> {
   /**
    * Hosts all the Routes (Add, View, Edit, Delete) for the Model
    *
+   * @param {Function} additionalRouteHandler - Function which exposes router and model to Host Additional Routes
    * @returns {IRouter} Router Object Containing all the Routes
    */
-  public serveAllRoutes(): IRouter {
+  public serveAllRoutes(
+    additionalRouteHandler?: (router: IRouter, model: ModelStatic<T>) => void,
+  ): IRouter {
     const router = express.Router();
 
     router.post('/columns', (req, res) => {
@@ -154,6 +157,11 @@ export class ExpressDatabaseHandler<T extends Model> {
         void this.delete(req, res);
       });
     }
+
+    if (additionalRouteHandler) {
+      additionalRouteHandler(router, this.model);
+    }
+
     return router;
   }
 }
