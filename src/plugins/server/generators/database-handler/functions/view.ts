@@ -48,7 +48,7 @@ export async function viewDatafromDatabase<T extends Model>(
   try {
     const options: IFindOptions = req.body['options'];
     const defaultOptions: FindOptions = {
-      raw: true,
+      raw: false,
     };
     const includeMap = modelIncludeMap();
     const docs = await model.findAll(
