@@ -5,6 +5,7 @@ import type {
   IDeleteDatabaseResult,
 } from '@plugins/auth/helpers/types';
 import type { IDBHandlerModelOptions } from '@plugins/server/generators';
+import { IRouter } from 'express';
 
 export interface Routes {
   get: string[];
@@ -18,13 +19,14 @@ export interface IDBRouteConfig {
   path: string;
   model?: ModelStatic<Model>;
   modelName?: string;
-  routes?: IDBRouteConfig[];
+  additionalRouteHandler?: (router: IRouter, model: ModelStatic<Model>) => void;
   options?: IDBHandlerModelOptions;
+  routes?: IDBRouteConfig[];
 }
 
-export interface ISuccessResponse {
+export interface ISuccessResponse<T = unknown> {
   status: number;
-  data: unknown;
+  data: T;
 }
 
 export interface IErrorResponse {

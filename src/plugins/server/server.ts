@@ -45,6 +45,7 @@ export class ExpressServer {
     this.port = port;
     this.app = express();
     this.initializeMiddlewares();
+    this.setCorsHeaders();
     this.serveStaticFiles();
     this.assignRouter();
     this.server = this.createHttpServer(this.app);
@@ -98,6 +99,19 @@ export class ExpressServer {
         ),
       }),
     );
+  }
+
+  /**
+   * Sets the CORS Headers
+   */
+  private setCorsHeaders(): void {
+    this.app.use((req, res, next) => {
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+      res.setHeader('Access-Control-Allow-Headers', '*');
+      res.setHeader('Access-Control-Allow-Credentials', 'true');
+      next();
+    });
   }
 
   /**

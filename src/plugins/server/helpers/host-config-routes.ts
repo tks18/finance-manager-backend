@@ -24,7 +24,10 @@ export function hostConfigRoutes(config: IDBRouteConfig[]): IRouter {
           route.modelName,
           route.options,
         );
-        mainRouter.use(route.path, routeHandler.serveAllRoutes());
+        mainRouter.use(
+          route.path,
+          routeHandler.serveAllRoutes(route.additionalRouteHandler),
+        );
       } else {
         throw new InternalServerError('Routes Config Not Setup Properly');
       }

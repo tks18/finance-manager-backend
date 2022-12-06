@@ -2,6 +2,46 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/tks18/finance-manager-backend/compare/v1.1.2...v2.0.0) (2022-12-06)
+
+
+### Features 🔥
+
+* **view:** use the new major 1.0.0 release of frontend ([f1a1a54](https://github.com/tks18/finance-manager-backend/commit/f1a1a54fd0966a2ea5c4c122bd444f88fa6d384b))
+
+### [1.1.2](https://github.com/tks18/finance-manager-backend/compare/v1.1.1...v1.1.2) (2022-12-06)
+
+
+### Bug Fixes 🛠
+
+* **plugins/server/dbhandler:** remove raw option for db query results ([b96fe84](https://github.com/tks18/finance-manager-backend/commit/b96fe8464c7f47ca624d160b1bfb40402dd01564))
+
+
+### Code Refactoring 🖌
+
+* **plugins/server/dbhandler:** add types for additional routes ([4d58dd0](https://github.com/tks18/finance-manager-backend/commit/4d58dd084f5018d0187e7bb66560ecd225765650))
+
+
+### Features 🔥
+
+* **plugins/server/dbhandler:** allow custom handlers to host additional routes ([6c46e4d](https://github.com/tks18/finance-manager-backend/commit/6c46e4d80ba21ba408a773f5740753cf959d4373))
+* **plugins/server:** add the additional route config for config helper ([4dce512](https://github.com/tks18/finance-manager-backend/commit/4dce5122a3c0aaa362347189a522097412ffad9b))
+* **routes/data:** add a additional route for calendar route to get date id ([73b1bef](https://github.com/tks18/finance-manager-backend/commit/73b1bef96612c946aaf02e7589dcfef0e4b53ac8))
+
+### [1.1.1](https://github.com/tks18/finance-manager-backend/compare/v1.1.0...v1.1.1) (2022-11-12)
+
+
+### Bug Fixes 🛠
+
+* **plugins/server:** allow cors header ([23a048f](https://github.com/tks18/finance-manager-backend/commit/23a048f4f890b3cc08de2f0429017c24e3435225))
+
+## [1.1.0](https://github.com/tks18/finance-manager-backend/compare/v1.1.0-0...v1.1.0) (2022-11-12)
+
+
+### Bug Fixes 🛠
+
+* **plugins/server/database-handler:** enable raw option for postgresql queries ([37c1599](https://github.com/tks18/finance-manager-backend/commit/37c1599edb48392edfe7b0f9749abcd73153b980))
+
 ## [1.1.0-0](https://github.com/tks18/finance-manager-backend/compare/v1.0.0...v1.1.0-0) (2022-10-18)
 
 

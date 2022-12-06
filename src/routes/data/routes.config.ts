@@ -1,10 +1,47 @@
 import * as Models from '@models';
+import { BadRequest } from '@plugins/errors';
+import { errorResponseHandler, okResponse } from '@plugins/server/responses';
 import { IDBRouteConfig } from '@plugins/server/types';
+import { RequestHandler } from 'express';
 
 export const routesConfig: IDBRouteConfig[] = [
   {
     path: '/masters',
     routes: [
+      {
+        path: '/calendar',
+        model: Models.CalendarMaster,
+        modelName: 'CalendarMaster',
+        options: {
+          get: false,
+          add: false,
+          edit: false,
+          delete: false,
+        },
+        additionalRouteHandler: (router, model) => {
+          router.post('/get-date-id', (async (req, res) => {
+            try {
+              const { dateToFind }: { dateToFind: string } = req.body;
+              if (dateToFind) {
+                const [doc] = (await model.findAll({
+                  where: {
+                    date: dateToFind,
+                  },
+                  attributes: ['_id'],
+                  limit: 1,
+                })) as Models.CalendarMaster[];
+                okResponse(res, {
+                  dateId: doc._id,
+                });
+              } else {
+                throw new BadRequest('dateToFind', 'Request.body');
+              }
+            } catch (e) {
+              errorResponseHandler(res, e);
+            }
+          }) as RequestHandler);
+        },
+      },
       {
         path: '/assets',
         routes: [
