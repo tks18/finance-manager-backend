@@ -13,8 +13,6 @@ import { initAllModels } from '@models';
 
 // Exress Middlewares
 import bodyparser from 'body-parser';
-import helmet from 'helmet';
-import xssProtect from 'x-xss-protection';
 import morgan from 'morgan';
 
 // Health Checker Service
@@ -84,9 +82,6 @@ export class ExpressServer {
   private initializeMiddlewares(): void {
     this.app.use(bodyparser.json());
     this.app.use(bodyparser.urlencoded({ extended: true }));
-    this.app.use(helmet());
-    this.app.use(xssProtect());
-    this.app.set('trust proxy', true);
     this.prepareLoggerMiddleware();
     this.app.use(morgan('expresslog'));
     this.app.use(
@@ -106,8 +101,10 @@ export class ExpressServer {
    */
   private setCorsHeaders(): void {
     this.app.use((req, res, next) => {
+      res.setHeader('Cross-Origin-Embedder-Policy', 'unsafe-none');
+      res.setHeader('Cross-Origin-Opener-Policy', 'unsafe-none');
       res.setHeader('Access-Control-Allow-Origin', '*');
-      res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+      res.setHeader('Access-Control-Allow-Methods', '*');
       res.setHeader('Access-Control-Allow-Headers', '*');
       res.setHeader('Access-Control-Allow-Credentials', 'true');
       next();

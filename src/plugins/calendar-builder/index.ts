@@ -1,6 +1,7 @@
 import { NotAllowed } from './../errors/not-allowed';
 import { DateTime } from 'luxon';
-import { CalendarMaster } from '@models';
+import { Settings } from '@models';
+import { InternalServerError } from '@plugins/errors';
 
 interface ICalendarRow {
   date: DateTime;
@@ -82,46 +83,86 @@ const calendarObjBuilder = (currentDate: DateTime): ICalendarRow => {
 /**
  * Builds a Calendar Table for the Calendar master With start and end Date Parameters
  *
- * @param {string} start - Start Date (YYYY-MM-DD) format
- * @param {string} end - End Data (YYYY-MM-DD) format
+ * @param {string} end - End Date (YYYY-MM-DD) format
  * @returns {ICalendarRow[]} - Calendar Array
  */
-export async function buildCalendarTable(
-  start: string,
-  end: string,
-): Promise<ICalendarRow[]> {
-  const startDateObj = DateTime.fromFormat(start, 'yyyy-LL-dd');
-  const endDateObj = DateTime.fromFormat(end, 'yyyy-LL-dd');
-  const endCalendarRow = await CalendarMaster.findOne({
-    order: [['_id', 'DESC']],
-  });
-  const calendarRows: ICalendarRow[] = [];
-  if (endCalendarRow) {
-    const endCalendarDate =
-      endCalendarRow?.date && typeof endCalendarRow.date !== 'string'
-        ? endCalendarRow.date
-        : endDateObj;
-    if (endDateObj.toUnixInteger() > endCalendarDate.toUnixInteger()) {
-      const duration = endDateObj.diff(endCalendarDate, 'days');
-      let currentDate = endCalendarDate.plus({ days: 1 });
-      for (let i = 0; i < duration.days; i++) {
+export async function buildCalendarTable(end: string): Promise<ICalendarRow[]> {
+  const defaultStartDate = process.env['CALENDARSTARTDATE'];
+  if (defaultStartDate) {
+    const [startCalendarDate] = await Settings.findOrCreate({
+      where: {
+        name: 'start_calendar_date',
+        type: 'date',
+      },
+      defaults: {
+        name: 'start_calendar_date',
+        type: 'date',
+        value: defaultStartDate,
+      },
+    });
+    const startDateObj = DateTime.fromFormat(
+      startCalendarDate.value,
+      'yyyy-LL-dd',
+    );
+    const endDateObj = DateTime.fromFormat(end, 'yyyy-LL-dd');
+    const endCalendarDate = await Settings.findOne({
+      where: { name: 'end_calendar_date', type: 'date' },
+    });
+    const calendarRows: ICalendarRow[] = [];
+    if (endCalendarDate) {
+      const endCalendarObj = DateTime.fromFormat(
+        endCalendarDate.value,
+        'yyyy-LL-dd',
+      );
+      if (endDateObj.toUnixInteger() > endCalendarObj.toUnixInteger()) {
+        await Settings.update(
+          {
+            value: endDateObj.toFormat('yyyy-LL-dd'),
+          },
+          {
+            where: {
+              name: 'end_calendar_date',
+              type: 'date',
+            },
+          },
+        );
+        const duration = endDateObj.diff(endCalendarObj, 'days');
+        let currentDate = endCalendarObj.plus({ days: 1 });
+        for (let i = 0; i < duration.days; i++) {
+          const calendarRow = calendarObjBuilder(currentDate);
+          calendarRows.push(calendarRow);
+          currentDate = currentDate.plus({ days: 1 });
+        }
+      } else {
+        throw new NotAllowed(
+          `Calendar Table already Built Up to ${endCalendarObj.toISODate()}.`,
+        );
+      }
+    } else {
+      await Settings.findOrCreate({
+        where: {
+          name: 'end_calendar_date',
+          type: 'date',
+        },
+        defaults: {
+          name: 'end_calendar_date',
+          type: 'date',
+          value: endDateObj.toFormat('yyyy-LL-dd'),
+        },
+      });
+      const duration = endDateObj.diff(startDateObj, 'days');
+      let currentDate = startDateObj;
+      for (let i = 0; i <= duration.days; i++) {
         const calendarRow = calendarObjBuilder(currentDate);
         calendarRows.push(calendarRow);
         currentDate = currentDate.plus({ days: 1 });
       }
-    } else {
-      throw new NotAllowed(
-        `Calendar Table already Built Up to ${endCalendarDate.toISODate()}.`,
-      );
     }
+    return calendarRows;
   } else {
-    const duration = endDateObj.diff(startDateObj, 'days');
-    let currentDate = startDateObj;
-    for (let i = 0; i <= duration.days; i++) {
-      const calendarRow = calendarObjBuilder(currentDate);
-      calendarRows.push(calendarRow);
-      currentDate = currentDate.plus({ days: 1 });
-    }
+    throw new InternalServerError(
+      'Please Set CALENDARSTARTDATE Variable to Environment',
+      'ENV Variable not Found',
+    );
   }
-  return calendarRows;
 }

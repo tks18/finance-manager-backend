@@ -2,6 +2,41 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.1](https://github.com/tks18/finance-manager-backend/compare/v2.1.0...v2.1.1) (2022-12-13)
+
+
+### Bug Fixes 🛠
+
+* **plugins/calendar:** fix db not getting updated on calendar updaet ([6f706bb](https://github.com/tks18/finance-manager-backend/commit/6f706bb3271c558c766eb9002c8329570f2ef8f3))
+
+## [2.1.0](https://github.com/tks18/finance-manager-backend/compare/v2.0.2...v2.1.0) (2022-12-13)
+
+
+### Features 🔥
+
+* add new model, and use python api for managing investment data ([b723ad4](https://github.com/tks18/finance-manager-backend/commit/b723ad4750776791ed42f107e21d07e941962cb5))
+* **views:** update to new frontend ([2c89cee](https://github.com/tks18/finance-manager-backend/commit/2c89ceebdad0f461a5845086b1068d5bbf7c48f4))
+
+### [2.0.2](https://github.com/tks18/finance-manager-backend/compare/v2.0.1...v2.0.2) (2022-12-07)
+
+
+### Features 🔥
+
+* **views:** update to latest frontend version ([6c1d547](https://github.com/tks18/finance-manager-backend/commit/6c1d54795209b977c799c321ac758729edfafed3))
+
+### [2.0.1](https://github.com/tks18/finance-manager-backend/compare/v2.0.0...v2.0.1) (2022-12-06)
+
+
+### Bug Fixes 🛠
+
+* **package:** remove helmet and x-xss which caused issues in local env ([8d98c24](https://github.com/tks18/finance-manager-backend/commit/8d98c24dac249c276cb08214f1e3bf6634123ce3))
+* **plugins/server:** fix local serving of files ([4882f61](https://github.com/tks18/finance-manager-backend/commit/4882f61c41ec18d366e348e710c0b07dd284dfee))
+
+
+### Features 🔥
+
+* **views:** fix csp tag ([dacd1db](https://github.com/tks18/finance-manager-backend/commit/dacd1db7e1946835875a143efe99001eba6fcac9))
+
 ## [2.0.0](https://github.com/tks18/finance-manager-backend/compare/v1.1.2...v2.0.0) (2022-12-06)
 
 

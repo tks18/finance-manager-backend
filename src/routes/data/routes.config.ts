@@ -1,8 +1,14 @@
 import * as Models from '@models';
-import { BadRequest } from '@plugins/errors';
-import { errorResponseHandler, okResponse } from '@plugins/server/responses';
+import { BadRequest, InternalServerError, UnAuthorized } from '@plugins/errors';
+import { marketDataMethods } from '@plugins/market-data-server';
+import {
+  createdResponse,
+  errorResponseHandler,
+  okResponse,
+} from '@plugins/server/responses';
 import { IDBRouteConfig } from '@plugins/server/types';
 import { RequestHandler } from 'express';
+import { DateTime } from 'luxon';
 
 export const routesConfig: IDBRouteConfig[] = [
   {
@@ -157,6 +163,106 @@ export const routesConfig: IDBRouteConfig[] = [
         path: '/investments',
         model: Models.Investments,
         modelName: 'Investments',
+      },
+      {
+        path: '/market-data',
+        model: Models.MarketData,
+        modelName: 'MarketData',
+        additionalRouteHandler: (router) => {
+          router.post('/update-market-data', (async (req, res) => {
+            try {
+              const StartCalendarDate = process.env['MARKETSTARTDATE'];
+              if (StartCalendarDate) {
+                const sessionToken = req.headers['x-session-token'];
+                if (sessionToken) {
+                  const endInvestmentMarketDate = await Models.Settings.findOne(
+                    {
+                      where: {
+                        name: 'end_investment_market_date',
+                        type: 'date',
+                      },
+                    },
+                  );
+                  let startDate = '';
+                  let endDate = '';
+                  if (endInvestmentMarketDate) {
+                    startDate = endInvestmentMarketDate.value;
+                    endDate = DateTime.now().plus(-1).toFormat('yyyy-LL-dd');
+                  } else {
+                    startDate = StartCalendarDate;
+                    endDate = DateTime.now().plus(-1).toFormat('yyyy-LL-dd');
+                    const startInvestmentMarketDate =
+                      await Models.Settings.findOne({
+                        where: {
+                          name: 'start_investment_market_date',
+                          type: 'date',
+                        },
+                      });
+                    if (!startInvestmentMarketDate) {
+                      await Models.Settings.create({
+                        name: 'start_investment_market_date',
+                        type: 'date',
+                        value: startDate,
+                      });
+                    }
+                  }
+                  const marketDataInput = {
+                    start: startDate,
+                    end: endDate,
+                  };
+                  const marketData = await marketDataMethods.getMarketDate(
+                    String(sessionToken),
+                    marketDataInput,
+                  );
+                  const marketDataAdded = await Models.MarketData.bulkCreate(
+                    marketData,
+                  );
+                  const endInvestmentDate = await Models.Settings.findOne({
+                    where: {
+                      name: 'end_investment_market_date',
+                      type: 'date',
+                    },
+                  });
+                  if (endInvestmentDate) {
+                    await Models.Settings.update(
+                      {
+                        value: endDate,
+                      },
+                      {
+                        where: {
+                          name: 'end_investment_market_date',
+                          type: 'date',
+                        },
+                      },
+                    );
+                  } else {
+                    await Models.Settings.create({
+                      name: 'end_investment_market_date',
+                      type: 'date',
+                      value: endDate,
+                    });
+                  }
+                  createdResponse(
+                    res,
+                    `Total of ${marketDataAdded.length} number of Records Added to Database Based on the Investment Master and ticker data Available`,
+                  );
+                } else {
+                  throw new InternalServerError(
+                    'Please Set CALENDARSTARTDATE Variable to Environment',
+                    'ENV Variable not Found',
+                  );
+                }
+              } else {
+                throw new UnAuthorized(
+                  'Not Able to Find Session Token in the Request, Rejecting the request',
+                );
+              }
+            } catch (e) {
+              console.log(e);
+              errorResponseHandler(res, e);
+            }
+          }) as RequestHandler);
+        },
       },
       {
         path: '/opening-balances',

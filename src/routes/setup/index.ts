@@ -22,7 +22,7 @@ router.post('/build-calendar', (async (req, res) => {
       options: { endDate },
     }: { options: { endDate: string | undefined } } = req.body;
     if (endDate) {
-      const calendarRows = await buildCalendarTable('2020-01-01', endDate);
+      const calendarRows = await buildCalendarTable(endDate);
       const calendarDbRows = await CalendarMaster.bulkCreate(calendarRows);
       createdResponse(res, {
         message: 'calendar table has been created',
