@@ -115,17 +115,17 @@ export async function buildCalendarTable(end: string): Promise<ICalendarRow[]> {
         'yyyy-LL-dd',
       );
       if (endDateObj.toUnixInteger() > endCalendarObj.toUnixInteger()) {
-        await Settings.findOrCreate({
-          where: {
-            name: 'end_calendar_date',
-            type: 'date',
-          },
-          defaults: {
-            name: 'end_calendar_date',
-            type: 'date',
+        await Settings.update(
+          {
             value: endDateObj.toFormat('yyyy-LL-dd'),
           },
-        });
+          {
+            where: {
+              name: 'end_calendar_date',
+              type: 'date',
+            },
+          },
+        );
         const duration = endDateObj.diff(endCalendarObj, 'days');
         let currentDate = endCalendarObj.plus({ days: 1 });
         for (let i = 0; i < duration.days; i++) {
