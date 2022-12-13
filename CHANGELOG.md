@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/tks18/finance-manager-backend/compare/v2.0.2...v2.1.0) (2022-12-13)
+
+
+### Features 🔥
+
+* add new model, and use python api for managing investment data ([b723ad4](https://github.com/tks18/finance-manager-backend/commit/b723ad4750776791ed42f107e21d07e941962cb5))
+* **views:** update to new frontend ([2c89cee](https://github.com/tks18/finance-manager-backend/commit/2c89ceebdad0f461a5845086b1068d5bbf7c48f4))
+
 ### [2.0.2](https://github.com/tks18/finance-manager-backend/compare/v2.0.1...v2.0.2) (2022-12-07)
 
 
