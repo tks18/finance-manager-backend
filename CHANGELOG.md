@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.1](https://github.com/tks18/finance-manager-backend/compare/v2.1.0...v2.1.1) (2022-12-13)
+
+
+### Bug Fixes 🛠
+
+* **plugins/calendar:** fix db not getting updated on calendar updaet ([6f706bb](https://github.com/tks18/finance-manager-backend/commit/6f706bb3271c558c766eb9002c8329570f2ef8f3))
+
 ## [2.1.0](https://github.com/tks18/finance-manager-backend/compare/v2.0.2...v2.1.0) (2022-12-13)
 
 
