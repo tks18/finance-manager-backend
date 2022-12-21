@@ -3,8 +3,26 @@ import { dblog } from '@plugins/logger';
 import { InternalServerError } from '@plugins/errors';
 
 const constructDBObject = () => {
-  const { DBHOST, DBPORT, DATABASENAME, DBUSERNAME, DBPASSWORD } = process.env;
-  if (DBHOST && DBPORT && DATABASENAME && DBUSERNAME && DBPASSWORD) {
+  const {
+    DBHOST,
+    DBPORT,
+    DATABASENAME,
+    DBUSERNAME,
+    DBPASSWORD,
+    DBCERT,
+    DBKEY,
+    DBROOTKEY,
+  } = process.env;
+  if (
+    DBHOST &&
+    DBPORT &&
+    DATABASENAME &&
+    DBUSERNAME &&
+    DBPASSWORD &&
+    DBCERT &&
+    DBKEY &&
+    DBROOTKEY
+  ) {
     return new Sequelize({
       dialect: 'postgres',
       host: DBHOST,
@@ -12,6 +30,14 @@ const constructDBObject = () => {
       database: DATABASENAME,
       username: DBUSERNAME,
       password: DBPASSWORD,
+      ssl: true,
+      dialectOptions: {
+        ssl: {
+          key: DBKEY,
+          cert: DBCERT,
+          ca: DBROOTKEY,
+        },
+      },
       logging: dblog.debug.bind(dblog),
     });
   } else {

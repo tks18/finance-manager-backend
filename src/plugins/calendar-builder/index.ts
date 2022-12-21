@@ -114,7 +114,10 @@ export async function buildCalendarTable(end: string): Promise<ICalendarRow[]> {
         endCalendarDate.value,
         'yyyy-LL-dd',
       );
-      if (endDateObj.toUnixInteger() > endCalendarObj.toUnixInteger()) {
+      if (
+        endDateObj.toUnixInteger() > endCalendarObj.toUnixInteger() &&
+        endDateObj.toUnixInteger() !== endCalendarObj.toUnixInteger()
+      ) {
         await Settings.update(
           {
             value: endDateObj.toFormat('yyyy-LL-dd'),
