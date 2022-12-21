@@ -31,13 +31,6 @@ const constructDBObject = () => {
       username: DBUSERNAME,
       password: DBPASSWORD,
       ssl: true,
-      dialectOptions: {
-        ssl: {
-          key: DBKEY,
-          cert: DBCERT,
-          ca: DBROOTKEY,
-        },
-      },
       logging: dblog.debug.bind(dblog),
     });
   } else {
