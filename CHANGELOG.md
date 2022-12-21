@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.2.2](https://github.com/tks18/finance-manager-backend/compare/v2.2.1...v2.2.2) (2022-12-21)
+
+
+### Bug Fixes 🛠
+
+* **db:** fix ssl for db connection ([5eed158](https://github.com/tks18/finance-manager-backend/commit/5eed15840baee3bf8ff045e2b099194fc2beffe1))
+
 ### [2.2.1](https://github.com/tks18/finance-manager-backend/compare/v2.2.0...v2.2.1) (2022-12-21)
 
 
