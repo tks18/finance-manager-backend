@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.2.3](https://github.com/tks18/finance-manager-backend/compare/v2.2.2...v2.2.3) (2022-12-22)
+
+
+### Bug Fixes 🛠
+
+* **.env:** fix .env file path in production environment ([cb116ab](https://github.com/tks18/finance-manager-backend/commit/cb116ab17d700089cee14762fc836b68426e89e6))
+
 ### [2.2.2](https://github.com/tks18/finance-manager-backend/compare/v2.2.1...v2.2.2) (2022-12-21)
 
 
