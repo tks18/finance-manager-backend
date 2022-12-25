@@ -2,6 +2,41 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.3.0](https://github.com/tks18/finance-manager-backend/compare/v2.2.3...v2.3.0) (2022-12-25)
+
+
+### Features 🔥
+
+* **views:** update to views@1.2.0 ([e08d146](https://github.com/tks18/finance-manager-backend/commit/e08d146b81ef65f03a9ab030b0fb1278a93236b1))
+
+### [2.2.3](https://github.com/tks18/finance-manager-backend/compare/v2.2.2...v2.2.3) (2022-12-22)
+
+
+### Bug Fixes 🛠
+
+* **.env:** fix .env file path in production environment ([cb116ab](https://github.com/tks18/finance-manager-backend/commit/cb116ab17d700089cee14762fc836b68426e89e6))
+
+### [2.2.2](https://github.com/tks18/finance-manager-backend/compare/v2.2.1...v2.2.2) (2022-12-21)
+
+
+### Bug Fixes 🛠
+
+* **db:** fix ssl for db connection ([5eed158](https://github.com/tks18/finance-manager-backend/commit/5eed15840baee3bf8ff045e2b099194fc2beffe1))
+
+### [2.2.1](https://github.com/tks18/finance-manager-backend/compare/v2.2.0...v2.2.1) (2022-12-21)
+
+
+### Bug Fixes 🛠
+
+* **plugins/db:** allow ssl login for db connection ([b138494](https://github.com/tks18/finance-manager-backend/commit/b13849418834ca10d320a0a38c239efb786666d3))
+
+## [2.2.0](https://github.com/tks18/finance-manager-backend/compare/v2.1.1...v2.2.0) (2022-12-17)
+
+
+### Bug Fixes 🛠
+
+* **views:** update to the new views app ([3f354d5](https://github.com/tks18/finance-manager-backend/commit/3f354d5057a79532c62a9c8281ac25a5263d20e0))
+
 ### [2.1.1](https://github.com/tks18/finance-manager-backend/compare/v2.1.0...v2.1.1) (2022-12-13)
 
 
