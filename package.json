@@ -1,6 +1,6 @@
 {
   "name": "finance-manager-backend",
-  "version": "2.2.3",
+  "version": "2.3.0",
   "description": "Backend for Personal Finance Manager made with Nodejs, Express & Typescript",
   "main": "src/app.ts",
   "scripts": {
