@@ -1,5 +1,10 @@
 import * as Models from '@models';
-import { BadRequest, InternalServerError, UnAuthorized } from '@plugins/errors';
+import {
+  BadRequest,
+  InternalServerError,
+  NotAllowed,
+  UnAuthorized,
+} from '@plugins/errors';
 import { marketDataMethods } from '@plugins/market-data-server';
 import {
   createdResponse,
@@ -185,12 +190,30 @@ export const routesConfig: IDBRouteConfig[] = [
                   );
                   let startDate = '';
                   let endDate = '';
+                  let proceedToInvstServer: boolean;
                   if (endInvestmentMarketDate) {
-                    startDate = endInvestmentMarketDate.value;
-                    endDate = DateTime.now().plus(-1).toFormat('yyyy-LL-dd');
+                    const startDatetimeObj = DateTime.fromFormat(
+                      endInvestmentMarketDate.value,
+                      'yyyy-LL-dd',
+                    );
+                    const endDatetimeObj = DateTime.now().plus({ days: -1 });
+                    if (
+                      startDatetimeObj.toISODate() !==
+                        endDatetimeObj.toISODate() &&
+                      endDatetimeObj.toUnixInteger() >=
+                        startDatetimeObj.toUnixInteger()
+                    ) {
+                      proceedToInvstServer = false;
+                    } else {
+                      proceedToInvstServer = true;
+                    }
+                    startDate = startDatetimeObj.toFormat('yyyy-LL-dd');
+                    endDate = endDatetimeObj.toFormat('yyyy-LL-dd');
                   } else {
                     startDate = StartCalendarDate;
-                    endDate = DateTime.now().plus(-1).toFormat('yyyy-LL-dd');
+                    endDate = DateTime.now()
+                      .plus({ days: -1 })
+                      .toFormat('yyyy-LL-dd');
                     const startInvestmentMarketDate =
                       await Models.Settings.findOne({
                         where: {
@@ -205,47 +228,54 @@ export const routesConfig: IDBRouteConfig[] = [
                         value: startDate,
                       });
                     }
+                    proceedToInvstServer = true;
                   }
-                  const marketDataInput = {
-                    start: startDate,
-                    end: endDate,
-                  };
-                  const marketData = await marketDataMethods.getMarketDate(
-                    String(sessionToken),
-                    marketDataInput,
-                  );
-                  const marketDataAdded = await Models.MarketData.bulkCreate(
-                    marketData,
-                  );
-                  const endInvestmentDate = await Models.Settings.findOne({
-                    where: {
-                      name: 'end_investment_market_date',
-                      type: 'date',
-                    },
-                  });
-                  if (endInvestmentDate) {
-                    await Models.Settings.update(
-                      {
-                        value: endDate,
+                  if (proceedToInvstServer) {
+                    const marketDataInput = {
+                      start: startDate,
+                      end: endDate,
+                    };
+                    const marketData = await marketDataMethods.getMarketDate(
+                      String(sessionToken),
+                      marketDataInput,
+                    );
+                    const marketDataAdded = await Models.MarketData.bulkCreate(
+                      marketData,
+                    );
+                    const endInvestmentDate = await Models.Settings.findOne({
+                      where: {
+                        name: 'end_investment_market_date',
+                        type: 'date',
                       },
-                      {
-                        where: {
-                          name: 'end_investment_market_date',
-                          type: 'date',
+                    });
+                    if (endInvestmentDate) {
+                      await Models.Settings.update(
+                        {
+                          value: endDate,
                         },
-                      },
+                        {
+                          where: {
+                            name: 'end_investment_market_date',
+                            type: 'date',
+                          },
+                        },
+                      );
+                    } else {
+                      await Models.Settings.create({
+                        name: 'end_investment_market_date',
+                        type: 'date',
+                        value: endDate,
+                      });
+                    }
+                    createdResponse(
+                      res,
+                      `Total of ${marketDataAdded.length} number of Records Added to Database Based on the Investment Master and ticker data Available`,
                     );
                   } else {
-                    await Models.Settings.create({
-                      name: 'end_investment_market_date',
-                      type: 'date',
-                      value: endDate,
-                    });
+                    throw new NotAllowed(
+                      'Investment Market Data Cannot be Updated when the start date and end date are same',
+                    );
                   }
-                  createdResponse(
-                    res,
-                    `Total of ${marketDataAdded.length} number of Records Added to Database Based on the Investment Master and ticker data Available`,
-                  );
                 } else {
                   throw new InternalServerError(
                     'Please Set CALENDARSTARTDATE Variable to Environment',
