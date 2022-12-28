@@ -136,6 +136,11 @@ export const routesConfig: IDBRouteConfig[] = [
             model: Models.InvestmentMaster,
             modelName: 'InvestmentMaster',
           },
+          {
+            path: '/agents',
+            model: Models.InvestmentAgentMaster,
+            modelName: 'InvestmentAgentMaster',
+          },
         ],
       },
     ],
