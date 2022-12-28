@@ -3,3 +3,4 @@ export * from './credit-cards.model';
 export * from './debit-cards.model';
 export * from './emi.model';
 export * from './insurances.model';
+export * from './investment-agents.model';
