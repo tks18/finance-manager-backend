@@ -32,6 +32,8 @@ export class Expenses extends Model<
   declare asset_id: ForeignKey<AssetMaster['_id']>;
   declare emi_id: ForeignKey<EMIMaster['_id']>;
   declare insurance_id: ForeignKey<InsuranceMaster['_id']>;
+  declare vendor: string;
+  declare remarks: string;
   declare amount: number;
   declare tax_allowable_amount: number;
 
@@ -179,6 +181,8 @@ export function initExpenses(sequelize: Sequelize): void {
           key: '_id',
         },
       },
+      vendor: { allowNull: false, type: DataTypes.STRING },
+      remarks: { allowNull: false, type: DataTypes.STRING },
       amount: { allowNull: false, type: DataTypes.DECIMAL },
       tax_allowable_amount: { allowNull: false, type: DataTypes.DECIMAL },
       createdAt: DataTypes.DATE,

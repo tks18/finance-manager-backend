@@ -29,6 +29,7 @@ export class Incomes extends Model<
   declare bank_id: ForeignKey<BankMaster['_id']>;
   declare investment_id: ForeignKey<InvestmentMaster['_id']>;
   declare amount: number;
+  declare remarks: string;
   declare taxable_amount: number;
 
   declare createdAt: CreationOptional<Date>;
@@ -139,6 +140,7 @@ export function initIncomes(sequelize: Sequelize): void {
           key: '_id',
         },
       },
+      remarks: { allowNull: false, type: DataTypes.STRING },
       amount: { allowNull: false, type: DataTypes.DECIMAL },
       taxable_amount: { allowNull: false, type: DataTypes.DECIMAL },
       createdAt: DataTypes.DATE,

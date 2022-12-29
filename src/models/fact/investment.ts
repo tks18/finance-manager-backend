@@ -28,6 +28,7 @@ export class Investments extends Model<
   declare master_id: ForeignKey<InvestmentMaster['_id']>;
   declare bank_id: ForeignKey<BankMaster['_id']>;
   declare agent_id: ForeignKey<InvestmentAgentMaster['_id']>;
+  declare remarks: string;
   declare cost: number;
   declare units: number;
   declare amount: number;
@@ -142,6 +143,7 @@ export function initInvestments(sequelize: Sequelize): void {
           key: '_id',
         },
       },
+      remarks: { allowNull: false, type: DataTypes.STRING },
       cost: { allowNull: false, type: DataTypes.DECIMAL },
       units: { allowNull: false, type: DataTypes.DECIMAL },
       amount: { allowNull: false, type: DataTypes.DECIMAL },
