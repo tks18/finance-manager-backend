@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.6.0](https://github.com/tks18/finance-manager-backend/compare/v2.5.0...v2.6.0) (2022-12-30)
+
+
+### Features 🔥
+
+* **models/transactions:** add a new remarks column for capturing t'ion level details ([f2146e8](https://github.com/tks18/finance-manager-backend/commit/f2146e8295669114627bbfe478e017b666a14e3a))
+* **views:** update to views@1.4.0 ([efc0f54](https://github.com/tks18/finance-manager-backend/commit/efc0f5452529cda9782f3e76f4d8c627d135578a))
+
 ## [2.5.0](https://github.com/tks18/finance-manager-backend/compare/v2.4.1...v2.5.0) (2022-12-28)
 
 
