@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.6.2](https://github.com/tks18/finance-manager-backend/compare/v2.6.1...v2.6.2) (2022-12-31)
+
+
+### Bug Fixes 🛠
+
+* **routes/data/market-data:** fix the start-date for market-data ([5bbd780](https://github.com/tks18/finance-manager-backend/commit/5bbd780942619a974b4790f05e32afe3a3c1c1c4))
+
 ### [2.6.1](https://github.com/tks18/finance-manager-backend/compare/v2.6.0...v2.6.1) (2022-12-31)
 
 
