@@ -19,6 +19,7 @@ const allFunctions: ((sequelize: Sequelize) => void)[] = [
   masterTables.initInsuranceMaster,
   masterTables.initAssetCategoryMaster,
   masterTables.initAssetMaster,
+  masterTables.initInvestmentAgentMaster,
   factTables.initIncomes,
   factTables.initExpenses,
   factTables.initInvestments,

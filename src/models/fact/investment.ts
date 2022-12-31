@@ -1,6 +1,11 @@
 import { DateTime } from 'luxon';
 import { Model, DataTypes } from 'sequelize';
-import { CalendarMaster, BankMaster, InvestmentMaster } from '@models';
+import {
+  CalendarMaster,
+  BankMaster,
+  InvestmentMaster,
+  InvestmentAgentMaster,
+} from '@models';
 import type {
   Sequelize,
   InferAttributes,
@@ -22,6 +27,8 @@ export class Investments extends Model<
   declare date: string | DateTime;
   declare master_id: ForeignKey<InvestmentMaster['_id']>;
   declare bank_id: ForeignKey<BankMaster['_id']>;
+  declare agent_id: ForeignKey<InvestmentAgentMaster['_id']>;
+  declare remarks: string;
   declare cost: number;
   declare units: number;
   declare amount: number;
@@ -33,6 +40,7 @@ export class Investments extends Model<
   declare calendarRecord?: NonAttribute<CalendarMaster>;
   declare masterRecord?: NonAttribute<InvestmentMaster>;
   declare bankRecord?: NonAttribute<BankMaster>;
+  declare agentRecord?: NonAttribute<InvestmentAgentMaster>;
 }
 
 /**
@@ -54,6 +62,11 @@ function defineRelationships(): void {
     foreignKey: 'bank_id',
     as: 'investments',
   });
+  InvestmentAgentMaster.hasMany(Investments, {
+    sourceKey: '_id',
+    foreignKey: 'agent_id',
+    as: 'investments',
+  });
   Investments.belongsTo(CalendarMaster, {
     targetKey: '_id',
     foreignKey: 'date_id',
@@ -68,6 +81,11 @@ function defineRelationships(): void {
     targetKey: '_id',
     foreignKey: 'bank_id',
     as: 'bankRecord',
+  });
+  Investments.belongsTo(InvestmentAgentMaster, {
+    targetKey: '_id',
+    foreignKey: 'agent_id',
+    as: 'agentRecord',
   });
 }
 
@@ -117,6 +135,15 @@ export function initInvestments(sequelize: Sequelize): void {
           key: '_id',
         },
       },
+      agent_id: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
+        references: {
+          model: InvestmentAgentMaster,
+          key: '_id',
+        },
+      },
+      remarks: { allowNull: false, type: DataTypes.STRING },
       cost: { allowNull: false, type: DataTypes.DECIMAL },
       units: { allowNull: false, type: DataTypes.DECIMAL },
       amount: { allowNull: false, type: DataTypes.DECIMAL },

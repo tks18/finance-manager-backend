@@ -2,6 +2,44 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.6.1](https://github.com/tks18/finance-manager-backend/compare/v2.6.0...v2.6.1) (2022-12-31)
+
+
+### Features 🔥
+
+* **views:** update to views@1.4.1 ([c2f3669](https://github.com/tks18/finance-manager-backend/commit/c2f3669edacc10572f19e8faf1913b0ba062e6b5))
+
+## [2.6.0](https://github.com/tks18/finance-manager-backend/compare/v2.5.0...v2.6.0) (2022-12-30)
+
+
+### Features 🔥
+
+* **models/transactions:** add a new remarks column for capturing t'ion level details ([f2146e8](https://github.com/tks18/finance-manager-backend/commit/f2146e8295669114627bbfe478e017b666a14e3a))
+* **views:** update to views@1.4.0 ([efc0f54](https://github.com/tks18/finance-manager-backend/commit/efc0f5452529cda9782f3e76f4d8c627d135578a))
+
+## [2.5.0](https://github.com/tks18/finance-manager-backend/compare/v2.4.1...v2.5.0) (2022-12-28)
+
+
+### Features 🔥
+
+* **models:** add a new model for managing investment-agents ([53f20a2](https://github.com/tks18/finance-manager-backend/commit/53f20a283ff3b4b067b84a50e137f8ddc4ccc083))
+* **routes/data:** expose the new investment-agent model to api ([0418262](https://github.com/tks18/finance-manager-backend/commit/041826284c1abdc6cbe210ead402943d25763b1a))
+* **views:** update to views@1.3.0 ([9213858](https://github.com/tks18/finance-manager-backend/commit/9213858ff53441c6ed6c50fb4af651249efc380f))
+
+### [2.4.1](https://github.com/tks18/finance-manager-backend/compare/v2.4.0...v2.4.1) (2022-12-28)
+
+
+### Features 🔥
+
+* **views:** update to views@1.2.1 ([7615372](https://github.com/tks18/finance-manager-backend/commit/76153724e318c369922b9bd1ec0ec3d94df2bafc))
+
+## [2.4.0](https://github.com/tks18/finance-manager-backend/compare/v2.3.0...v2.4.0) (2022-12-27)
+
+
+### Bug Fixes 🛠
+
+* **routes/data/market-data:** fix - dont contact investment server when start and end date are same ([1478d7e](https://github.com/tks18/finance-manager-backend/commit/1478d7eb636d480e763cadaf6ed16a19be6977ae))
+
 ## [2.3.0](https://github.com/tks18/finance-manager-backend/compare/v2.2.3...v2.3.0) (2022-12-25)
 
 

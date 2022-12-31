@@ -91,6 +91,9 @@ export const modelIncludeMap = () => ({
       },
     },
     others: {
+      investmentAgents: {
+        investments: { model: factTables.Investments, as: 'investments' },
+      },
       banks: {
         creditCards: {
           model: masterTables.CreditCardMaster,
@@ -173,6 +176,10 @@ export const modelIncludeMap = () => ({
         as: 'masterRecord',
       },
       bankRecord: { model: masterTables.BankMaster, as: 'bankRecord' },
+      agentRecord: {
+        model: masterTables.InvestmentAgentMaster,
+        as: 'agentRecord',
+      },
     },
     openingBalances: {
       calendarRecord: {
