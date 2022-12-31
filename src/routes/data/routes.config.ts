@@ -208,11 +208,13 @@ export const routesConfig: IDBRouteConfig[] = [
                       endDatetimeObj.toUnixInteger() >=
                         startDatetimeObj.toUnixInteger()
                     ) {
-                      proceedToInvstServer = false;
-                    } else {
                       proceedToInvstServer = true;
+                    } else {
+                      proceedToInvstServer = false;
                     }
-                    startDate = startDatetimeObj.toFormat('yyyy-LL-dd');
+                    startDate = startDatetimeObj
+                      .plus({ days: 1 })
+                      .toFormat('yyyy-LL-dd');
                     endDate = endDatetimeObj.toFormat('yyyy-LL-dd');
                   } else {
                     startDate = StartCalendarDate;
@@ -244,38 +246,44 @@ export const routesConfig: IDBRouteConfig[] = [
                       String(sessionToken),
                       marketDataInput,
                     );
-                    const marketDataAdded = await Models.MarketData.bulkCreate(
-                      marketData,
-                    );
-                    const endInvestmentDate = await Models.Settings.findOne({
-                      where: {
-                        name: 'end_investment_market_date',
-                        type: 'date',
-                      },
-                    });
-                    if (endInvestmentDate) {
-                      await Models.Settings.update(
-                        {
-                          value: endDate,
+                    if (marketData.length > 0) {
+                      const marketDataAdded =
+                        await Models.MarketData.bulkCreate(marketData);
+                      const endInvestmentDate = await Models.Settings.findOne({
+                        where: {
+                          name: 'end_investment_market_date',
+                          type: 'date',
                         },
-                        {
-                          where: {
-                            name: 'end_investment_market_date',
-                            type: 'date',
+                      });
+                      if (endInvestmentDate) {
+                        await Models.Settings.update(
+                          {
+                            value: endDate,
                           },
-                        },
+                          {
+                            where: {
+                              name: 'end_investment_market_date',
+                              type: 'date',
+                            },
+                          },
+                        );
+                      } else {
+                        await Models.Settings.create({
+                          name: 'end_investment_market_date',
+                          type: 'date',
+                          value: endDate,
+                        });
+                      }
+                      createdResponse(
+                        res,
+                        `Total of ${marketDataAdded.length} number of Records Added to Database Based on the Investment Master and ticker data Available`,
                       );
                     } else {
-                      await Models.Settings.create({
-                        name: 'end_investment_market_date',
-                        type: 'date',
-                        value: endDate,
-                      });
+                      okResponse(
+                        res,
+                        'No New Records have been Added to Database',
+                      );
                     }
-                    createdResponse(
-                      res,
-                      `Total of ${marketDataAdded.length} number of Records Added to Database Based on the Investment Master and ticker data Available`,
-                    );
                   } else {
                     throw new NotAllowed(
                       'Investment Market Data Cannot be Updated when the start date and end date are same',
@@ -293,7 +301,6 @@ export const routesConfig: IDBRouteConfig[] = [
                 );
               }
             } catch (e) {
-              console.log(e);
               errorResponseHandler(res, e);
             }
           }) as RequestHandler);
