@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.6.1](https://github.com/tks18/finance-manager-backend/compare/v2.6.0...v2.6.1) (2022-12-31)
+
+
+### Features 🔥
+
+* **views:** update to views@1.4.1 ([c2f3669](https://github.com/tks18/finance-manager-backend/commit/c2f3669edacc10572f19e8faf1913b0ba062e6b5))
+
 ## [2.6.0](https://github.com/tks18/finance-manager-backend/compare/v2.5.0...v2.6.0) (2022-12-30)
 
 
