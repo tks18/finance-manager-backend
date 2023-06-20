@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.8.0](https://github.com/tks18/finance-manager-backend/compare/v2.7.0...v2.8.0) (2023-06-20)
+
+
+### Build System 🏗
+
+* **packages:** update all packages in the bundle ([cd976d7](https://github.com/tks18/finance-manager-backend/commit/cd976d737eb018355d99cf15d2e57c4649e52cbc))
+
+
+### Bug Fixes 🛠
+
+* **calendar:** fix calendar-builder types according to new version ([d811f28](https://github.com/tks18/finance-manager-backend/commit/d811f28014010938c661c16be9bd3a48b9341b6a))
+
 ## [2.7.0](https://github.com/tks18/finance-manager-backend/compare/v2.6.2...v2.7.0) (2022-12-31)
 
 
