@@ -47,8 +47,8 @@ const calendarObjBuilder = (currentDate: DateTime): ICalendarRow => {
   const calendarRow: ICalendarRow = {
     date: currentDate,
     day_id: currentDate.weekday,
-    day_name: currentDate.weekdayLong,
-    day_name_short: currentDate.weekdayShort,
+    day_name: String(currentDate.weekdayLong),
+    day_name_short: String(currentDate.weekdayShort),
     day_type: [6, 7].includes(currentDate.weekday) ? 'Weekend' : 'Weekday',
     week_id: weekId,
     start_of_week: currentDate.startOf('week'),
@@ -59,8 +59,8 @@ const calendarObjBuilder = (currentDate: DateTime): ICalendarRow => {
     start_of_month: startofMonth,
     day_of_month: currentDate.diff(startofMonth, 'days').days + 1,
     end_of_month: currentDate.endOf('month'),
-    month_name: currentDate.monthLong,
-    month_name_short: currentDate.monthShort,
+    month_name: String(currentDate.monthLong),
+    month_name_short: String(currentDate.monthShort),
     quarter_id: quarterId,
     fy_quarter_id: fyQuarterId,
     start_of_quarter: startofQuarter,
@@ -138,7 +138,9 @@ export async function buildCalendarTable(end: string): Promise<ICalendarRow[]> {
         }
       } else {
         throw new NotAllowed(
-          `Calendar Table already Built Up to ${endCalendarObj.toISODate()}.`,
+          `Calendar Table already Built Up to ${String(
+            endCalendarObj.toISODate(),
+          )}.`,
         );
       }
     } else {
