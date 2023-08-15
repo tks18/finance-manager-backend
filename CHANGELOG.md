@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0](https://github.com/tks18/finance-manager-backend/compare/v2.8.0...v3.0.0) (2023-08-15)
+
+
+### Build System 🏗
+
+* **package:** update packages ([7db63e6](https://github.com/tks18/finance-manager-backend/commit/7db63e6bd860e8529c10ac7a7f03e4312ae159ef))
+
+
+### Features 🔥
+
+* **models/income-sources:** link the income source master to transactions and category master ([4042414](https://github.com/tks18/finance-manager-backend/commit/404241437d9579774b504ff02be156759dc8f3f0))
+* **models:** add income source model to manage income sources ([14a9630](https://github.com/tks18/finance-manager-backend/commit/14a9630be3de1324f97c4ac4de302471823efd1b))
+* **routes/user:** dont allow creation of users more than 1 ([2c5983d](https://github.com/tks18/finance-manager-backend/commit/2c5983d140ab52354bfa960b4c57849d2a237d42))
+* **users:** dont allow creation of more than 1 user in the system ([589cbb2](https://github.com/tks18/finance-manager-backend/commit/589cbb23101fb54714be611b06829cafb02bd175))
+* **views:** upgrade to views@v2.0.0 ([25a66cb](https://github.com/tks18/finance-manager-backend/commit/25a66cbf3addc44157fd0ccf1248d3336440739a))
+
 ## [2.8.0](https://github.com/tks18/finance-manager-backend/compare/v2.7.0...v2.8.0) (2023-06-20)
 
 
