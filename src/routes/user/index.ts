@@ -23,6 +23,10 @@ router.post('/add', (async (req, res) => {
     if (name && email && password) {
       const usersInSystem = await Users.findAll();
       if (usersInSystem.length > 0) {
+        throw new NotAllowed(
+          'Not allowed to create a new user, only 1 user is allowed in the system',
+        );
+      } else {
         const newUser = await Users.create({
           name,
           email,
@@ -36,10 +40,6 @@ router.post('/add', (async (req, res) => {
           name: newUser.name,
           token: loginToken,
         });
-      } else {
-        throw new NotAllowed(
-          'Not allowed to create a new user, only 1 user is allowed in the system',
-        );
       }
     } else {
       throw new BadRequest('name, email, password', 'request.body');
