@@ -1,5 +1,6 @@
 import { Model, DataTypes } from 'sequelize';
 import { IncomeMaster } from './master.model';
+import { IncomeSourceMaster } from './sources.model';
 import type {
   Sequelize,
   InferAttributes,
@@ -32,6 +33,7 @@ export class IncomeCategoryMaster extends Model<
   declare createdAt: CreationOptional<Date>;
   declare updatedAt: CreationOptional<Date>;
 
+  // Incomes
   declare getIncomes: HasManyGetAssociationsMixin<IncomeMaster>;
   declare addIncome: HasManyAddAssociationMixin<IncomeMaster, number>;
   declare addIncomes: HasManyAddAssociationsMixin<IncomeMaster, number>;
@@ -46,10 +48,48 @@ export class IncomeCategoryMaster extends Model<
     'category_id'
   >;
 
+  // Income Sources
+  declare getIncomeSources: HasManyGetAssociationsMixin<IncomeSourceMaster>;
+  declare addIncomeSources: HasManyAddAssociationMixin<
+    IncomeSourceMaster,
+    number
+  >;
+  declare addIncomesSources: HasManyAddAssociationsMixin<
+    IncomeSourceMaster,
+    number
+  >;
+  declare setIncomesSources: HasManySetAssociationsMixin<
+    IncomeSourceMaster,
+    number
+  >;
+  declare removeIncomeSources: HasManyRemoveAssociationMixin<
+    IncomeSourceMaster,
+    number
+  >;
+  declare removeIncomesSources: HasManyRemoveAssociationsMixin<
+    IncomeSourceMaster,
+    number
+  >;
+  declare hasIncomeSources: HasManyHasAssociationMixin<
+    IncomeSourceMaster,
+    number
+  >;
+  declare hasIncomesSources: HasManyHasAssociationsMixin<
+    IncomeSourceMaster,
+    number
+  >;
+  declare countIncomesSources: HasManyCountAssociationsMixin;
+  declare createIncomeSource: HasManyCreateAssociationMixin<
+    IncomeSourceMaster,
+    'category_id'
+  >;
+
   declare incomes?: NonAttribute<IncomeMaster[]>;
+  declare incomeSources?: NonAttribute<IncomeSourceMaster[]>;
 
   declare static associations: {
     incomes: Association<IncomeCategoryMaster, IncomeMaster>;
+    incomeSources: Association<IncomeCategoryMaster, IncomeSourceMaster>;
   };
 }
 

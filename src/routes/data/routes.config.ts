@@ -112,6 +112,11 @@ export const routesConfig: IDBRouteConfig[] = [
             modelName: 'IncomeCategoryMaster',
           },
           {
+            path: '/sources',
+            model: Models.IncomeSourceMaster,
+            modelName: 'IncomeSourceMaster',
+          },
+          {
             path: '/master',
             model: Models.IncomeMaster,
             modelName: 'IncomeMaster',

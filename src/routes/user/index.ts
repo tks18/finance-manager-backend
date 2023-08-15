@@ -6,7 +6,12 @@ import { verifyToken } from '@plugins/server/middlewares';
 
 // Response Handlers
 import { errorResponseHandler } from '@plugins/server/responses';
-import { BadRequest, NotFound, UnAuthorized } from '@plugins/errors';
+import {
+  BadRequest,
+  NotAllowed,
+  NotFound,
+  UnAuthorized,
+} from '@plugins/errors';
 import { okResponse } from '@plugins/server/responses';
 
 // Router
@@ -16,19 +21,26 @@ router.post('/add', (async (req, res) => {
   try {
     const { name, email, password } = req.body;
     if (name && email && password) {
-      const newUser = await Users.create({
-        name,
-        email,
-        password,
-      });
-      await newUser.hashPasswordnSave();
-      const loginToken = signJwt(newUser);
-      okResponse(res, {
-        _id: newUser._id,
-        email: newUser.email,
-        name: newUser.name,
-        token: loginToken,
-      });
+      const usersInSystem = await Users.findAll();
+      if (usersInSystem.length > 0) {
+        throw new NotAllowed(
+          'Not allowed to create a new user, only 1 user is allowed in the system',
+        );
+      } else {
+        const newUser = await Users.create({
+          name,
+          email,
+          password,
+        });
+        await newUser.hashPasswordnSave();
+        const loginToken = signJwt(newUser);
+        okResponse(res, {
+          _id: newUser._id,
+          email: newUser.email,
+          name: newUser.name,
+          token: loginToken,
+        });
+      }
     } else {
       throw new BadRequest('name, email, password', 'request.body');
     }

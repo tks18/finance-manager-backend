@@ -3,6 +3,7 @@ import { Model, DataTypes } from 'sequelize';
 import {
   CalendarMaster,
   IncomeMaster,
+  IncomeSourceMaster,
   BankMaster,
   InvestmentMaster,
 } from '@models';
@@ -26,6 +27,7 @@ export class Incomes extends Model<
   declare date_id: ForeignKey<CalendarMaster['_id']>;
   declare date: string | DateTime;
   declare master_id: ForeignKey<IncomeMaster['_id']>;
+  declare source_id: ForeignKey<IncomeSourceMaster['_id']>;
   declare bank_id: ForeignKey<BankMaster['_id']>;
   declare investment_id: ForeignKey<InvestmentMaster['_id']>;
   declare amount: number;
@@ -37,6 +39,7 @@ export class Incomes extends Model<
 
   declare calendarRecord?: NonAttribute<CalendarMaster>;
   declare masterRecord?: NonAttribute<IncomeMaster>;
+  declare sourceRecord?: NonAttribute<IncomeSourceMaster>;
   declare bankRecord?: NonAttribute<BankMaster>;
   declare investmentRecord?: NonAttribute<InvestmentMaster>;
 }
@@ -53,6 +56,11 @@ function defineRelationships(): void {
   IncomeMaster.hasMany(Incomes, {
     sourceKey: '_id',
     foreignKey: 'master_id',
+    as: 'transactions',
+  });
+  IncomeSourceMaster.hasMany(Incomes, {
+    sourceKey: '_id',
+    foreignKey: 'source_id',
     as: 'transactions',
   });
   BankMaster.hasMany(Incomes, {
@@ -74,6 +82,11 @@ function defineRelationships(): void {
     targetKey: '_id',
     foreignKey: 'master_id',
     as: 'masterRecord',
+  });
+  Incomes.belongsTo(IncomeSourceMaster, {
+    targetKey: '_id',
+    foreignKey: 'source_id',
+    as: 'sourceRecord',
   });
   Incomes.belongsTo(BankMaster, {
     targetKey: '_id',
@@ -122,6 +135,14 @@ export function initIncomes(sequelize: Sequelize): void {
         type: DataTypes.INTEGER,
         references: {
           model: IncomeMaster,
+          key: '_id',
+        },
+      },
+      source_id: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
+        references: {
+          model: IncomeSourceMaster,
           key: '_id',
         },
       },
