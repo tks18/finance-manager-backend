@@ -60,6 +60,20 @@ export const modelIncludeMap = () => ({
     incomes: {
       category: {
         incomes: { model: masterTables.IncomeMaster, as: 'incomes' },
+        incomeSources: {
+          model: masterTables.IncomeSourceMaster,
+          as: 'incomeSources',
+        },
+      },
+      source: {
+        category: {
+          model: masterTables.IncomeCategoryMaster,
+          as: 'incomeCategory',
+        },
+        transactions: {
+          model: factTables.Incomes,
+          as: 'transactions',
+        },
       },
       master: {
         category: {
@@ -146,6 +160,10 @@ export const modelIncludeMap = () => ({
         as: 'calendarRecord',
       },
       masterRecord: { model: masterTables.IncomeMaster, as: 'masterRecord' },
+      sourceRecord: {
+        model: masterTables.IncomeSourceMaster,
+        as: 'sourceRecord',
+      },
       bankRecord: { model: masterTables.BankMaster, as: 'bankRecord' },
       investmentRecord: {
         model: masterTables.InvestmentMaster,
