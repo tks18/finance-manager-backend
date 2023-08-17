@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.1.0](https://github.com/tks18/finance-manager-backend/compare/v3.0.0...v3.1.0) (2023-08-17)
+
+
+### Bug Fixes 🛠
+
+* **models/insurance-master:** fix the cover period field date formats to ISO standard ([66271b9](https://github.com/tks18/finance-manager-backend/commit/66271b9edf5ae96aa2f36dd3ccc70a8386a123ac))
+
 ## [3.0.0](https://github.com/tks18/finance-manager-backend/compare/v2.8.0...v3.0.0) (2023-08-15)
 
 
