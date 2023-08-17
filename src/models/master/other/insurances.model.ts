@@ -123,12 +123,6 @@ export function initInsuranceMaster(sequelize: Sequelize): void {
           const value = String(this.getDataValue('cover_period_start_date'));
           return DateTime.fromFormat(value, 'yyyy-LL-dd').toISODate();
         },
-        set(value: DateTime) {
-          this.setDataValue(
-            'cover_period_start_date',
-            value.toFormat('yyyy-LL-dd'),
-          );
-        },
       },
       cover_period_end_date: {
         allowNull: false,
