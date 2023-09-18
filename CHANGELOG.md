@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.2.0](https://github.com/tks18/finance-manager-backend/compare/v3.1.0...v3.2.0) (2023-09-18)
+
+
+### Build System 🏗
+
+* update all the packages ([ee18c0c](https://github.com/tks18/finance-manager-backend/commit/ee18c0c34d323373a422f5e78d545c291efa64af))
+
+
+### Features 🔥
+
+* **routes/user:** add a new route for checking user registration ([a843f9d](https://github.com/tks18/finance-manager-backend/commit/a843f9d148c6ecebed327ce0a9ec0a7448808eea))
+* **views:** update to views @ v2.1.0 ([f2e3bad](https://github.com/tks18/finance-manager-backend/commit/f2e3bad43a7f4a1635fb6ca9b14a65d8ac258132))
+
 ## [3.1.0](https://github.com/tks18/finance-manager-backend/compare/v3.0.0...v3.1.0) (2023-08-17)
 
 

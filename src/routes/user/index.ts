@@ -104,6 +104,26 @@ router.post('/get', verifyToken, (async (req, res) => {
   }
 }) as RequestHandler);
 
+router.post('/allow-registration', (async (req, res) => {
+  try {
+    const users = await Users.findAll({});
+    const result = {
+      login: false,
+      register: false,
+    };
+    if (users.length > 0) {
+      result.login = true;
+      result.register = false;
+    } else {
+      result.login = false;
+      result.register = true;
+    }
+    okResponse(res, result);
+  } catch (e) {
+    errorResponseHandler(res, e);
+  }
+}) as RequestHandler);
+
 router.post('/verify', (req, res) => {
   try {
     const { token } = req.body;
