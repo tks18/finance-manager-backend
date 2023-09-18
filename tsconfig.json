@@ -20,7 +20,6 @@
     },
     "rootDirs": ["./src"],
     "typeRoots": ["./src/types"],
-    "types": ["node"],
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
