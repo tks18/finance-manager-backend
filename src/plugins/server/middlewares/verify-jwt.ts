@@ -7,7 +7,6 @@ import type { Request, Response, NextFunction } from 'express';
 
 /**
  * Verifies whether the jwt token is authorized
- *
  * @param {Request} req - Express Request Object
  * @param {Response} res - Express Response Object
  * @param {NextFunction} next - Express Next Function

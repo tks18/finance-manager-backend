@@ -76,7 +76,6 @@ function defineRelationships(): void {
 
 /**
  * Initializes Income Source Master Table in Database for Syncing
- *
  * @param {Sequelize} sequelize - Sequelize Object
  */
 export function initIncomeSourceMaster(sequelize: Sequelize): void {

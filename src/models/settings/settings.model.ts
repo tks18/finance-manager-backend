@@ -24,7 +24,6 @@ export class Settings extends Model<
 
 /**
  * Initializes Settings Table in the Database for Syncing
- *
  * @param {Sequelize} sequelize - Sequelize Object
  */
 export function initSettings(sequelize: Sequelize) {

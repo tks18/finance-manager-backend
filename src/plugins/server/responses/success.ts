@@ -6,7 +6,6 @@ import type { ISuccessResponse } from '@plugins/server/types';
 
 /**
  * Send a OK Response to Client with Data
- *
  * @param {Response} res - Express Response Object
  * @param {object} data - Data to be Sent to Client
  */
@@ -20,7 +19,6 @@ export function okResponse(res: Response, data: unknown): void {
 
 /**
  * Send a Created Response to Client with Data
- *
  * @param {Response} res - Express Response Object
  * @param {object} data - Data to be Sent to Client
  */

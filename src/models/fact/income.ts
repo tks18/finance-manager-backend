@@ -102,7 +102,6 @@ function defineRelationships(): void {
 
 /**
  * Initializes Income Transactions Table in Database for Syncing
- *
  * @param {Sequelize} sequelize - Sequelize Object
  */
 export function initIncomes(sequelize: Sequelize): void {

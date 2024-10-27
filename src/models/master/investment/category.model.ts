@@ -65,7 +65,6 @@ export class InvestmentCategoryMaster extends Model<
 
 /**
  * Initializes Investment Category Master Table in the Database for Syncing
- *
  * @param {Sequelize} sequelize - Sequelize Object
  */
 export function initInvestmentCategoryMaster(sequelize: Sequelize) {

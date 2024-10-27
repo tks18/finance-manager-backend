@@ -63,7 +63,6 @@ function defineRelationships(): void {
 
 /**
  * Initializes Market Data Table in Database for Syncing
- *
  * @param {Sequelize} sequelize - Sequelize Object
  */
 export function initMarketData(sequelize: Sequelize): void {

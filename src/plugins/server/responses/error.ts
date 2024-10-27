@@ -8,7 +8,6 @@ import type { IErrorResponse } from '@plugins/server/types';
 
 /**
  * Send a Error Response to Client
- *
  * @param {Response} res - Express Response Object
  * @param {BaseError} error - Error Class which Extends BaseError from Plugins
  * @param {any} data - Data if any to be passed with the error response
@@ -25,7 +24,6 @@ function errorResponse(res: Response, error: BaseError, data?: unknown): void {
 
 /**
  * Send a Error Response to Client when the Error is Unknown
- *
  * @param {Response} res - Express Response Object
  * @param {any} error - error object from catch block
  * @param {any} data - Data if any to be passed with the error response

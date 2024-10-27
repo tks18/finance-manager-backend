@@ -107,7 +107,6 @@ function defineRelationships(): void {
 
 /**
  * Initializes Investment Master Table in Database for Syncing
- *
  * @param {Sequelize} sequelize - Sequelize Object
  */
 export function initAssetMaster(sequelize: Sequelize): void {

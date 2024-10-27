@@ -29,7 +29,6 @@ export class ExpressDatabaseHandler<T extends Model> {
 
   /**
    * Express Handlers for Performing Database Functions
-   *
    * @param {ModelStatic} model - Sequelize Model Object
    * @param {string} modelName - Name of the Model
    * @param {IDBHandlerModelOptions} modelOptions - Options to Select Routes (default all routes will be hosted)
@@ -51,7 +50,6 @@ export class ExpressDatabaseHandler<T extends Model> {
 
   /**
    * Gets the Table Name from the Model Class
-   *
    * @returns {string} - table name
    */
   get tableName() {
@@ -65,7 +63,6 @@ export class ExpressDatabaseHandler<T extends Model> {
 
   /**
    * Common Express Handler for all models to get all columns in the table
-   *
    * @param {Request} req - Express Request Object
    * @param {Response} res - Express Response Object
    */
@@ -81,7 +78,6 @@ export class ExpressDatabaseHandler<T extends Model> {
 
   /**
    * Common Express Handler for all models to Add new Docs to the Database of that model
-   *
    * @param {Request} req - Express Request Object
    * @param {Response} res - Express Response Object
    */
@@ -91,7 +87,6 @@ export class ExpressDatabaseHandler<T extends Model> {
 
   /**
    * Common Express Handler for all models to View Docs from the Database of that model
-   *
    * @param {Request} req - Express Request Object
    * @param {Response} res - Express Response Object
    */
@@ -101,7 +96,6 @@ export class ExpressDatabaseHandler<T extends Model> {
 
   /**
    * Common Express Handler for all models to Edit Docs from the Database of that model
-   *
    * @param {Request} req - Express Request Object
    * @param {Response} res - Express Response Object
    */
@@ -111,7 +105,6 @@ export class ExpressDatabaseHandler<T extends Model> {
 
   /**
    * Common Express Handler for all models to Delete Docs from the Database of that model
-   *
    * @param {Request} req - Express Request Object
    * @param {Response} res - Express Response Object
    */
@@ -121,7 +114,6 @@ export class ExpressDatabaseHandler<T extends Model> {
 
   /**
    * Hosts all the Routes (Add, View, Edit, Delete) for the Model
-   *
    * @param {Function} additionalRouteHandler - Function which exposes router and model to Host Additional Routes
    * @returns {IRouter} Router Object Containing all the Routes
    */

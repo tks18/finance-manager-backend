@@ -23,7 +23,8 @@ export class Users extends Model<
   declare updatedAt: CreationOptional<Date>;
 
   /**
-   * Creates a Hashed Password with the Inputed Password
+   * Creates a Hashed Password with the Inputed Password and saves it to the database
+   * @returns {boolean} - true / false for success of the function
    */
   public async hashPasswordnSave(): Promise<boolean> {
     const hash = await bcrypt.hash(this.password, 12);
@@ -34,8 +35,8 @@ export class Users extends Model<
 
   /**
    * Authenticates User with the Password Provided
-   *
    * @param {string} input - User Inputed Password
+   * @returns {boolean} - true / false for success of the function
    */
   public async authenticate(input: string): Promise<boolean> {
     return bcrypt.compare(input, this.password);
@@ -44,7 +45,6 @@ export class Users extends Model<
 
 /**
  * Initializes Users Table in the Database for Syncing
- *
  * @param {Sequelize} sequelize - Sequelize Object
  */
 export function initUsers(sequelize: Sequelize) {
