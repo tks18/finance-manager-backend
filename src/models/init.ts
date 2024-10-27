@@ -32,7 +32,6 @@ const allFunctions: ((sequelize: Sequelize) => void)[] = [
 
 /**
  * Initializes all the Sequelize Models for Syncing with Database
- *
  * @param {Sequelize} sequelize - Sequelize Object
  */
 export function initAllModels(sequelize: Sequelize) {

@@ -9,7 +9,6 @@ export class EndpointGenerator {
 
   /**
    * Creates a Route Containing all the Endpoints in the Server
-   *
    * @param {Response} res - Express Response Object
    * @param {IRouter} router - Express Router Object
    */

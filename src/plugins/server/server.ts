@@ -36,7 +36,6 @@ export class ExpressServer {
 
   /**
    * Initializes and Starts the Zyndex Server
-   *
    * @param {number} port - Port Number to start the server
    */
   constructor(port: number | string) {
@@ -133,7 +132,6 @@ export class ExpressServer {
 
   /**
    * Create a Http Server from Express App
-   *
    * @param {Express} app - Express App Object
    * @returns {http.Server} server - Http Server
    */

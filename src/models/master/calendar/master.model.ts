@@ -296,7 +296,6 @@ export class CalendarMaster extends Model<
 
 /**
  * Initializes the Calendar Master Table in the Database for Syncing
- *
  * @param {Sequelize} sequelize - Sequelize Object
  */
 export function initCalendarMaster(sequelize: Sequelize) {

@@ -72,7 +72,6 @@ export class InvestmentAgentMaster extends Model<
 
 /**
  * Initializes Investment Agent Master Table in Database for Syncing
- *
  * @param {Sequelize} sequelize - Sequelize Object
  */
 export function initInvestmentAgentMaster(sequelize: Sequelize): void {

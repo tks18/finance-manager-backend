@@ -15,7 +15,6 @@ interface IFindOptions {
 
 /**
  * Common Express Handler for all models to Edit Docs from the Database of that model
- *
  * @param {Request} req - Express Request Object
  * @param {Response} res - Express Response Object
  * @param {string} model - Sequelize Model Object

@@ -205,7 +205,6 @@ export class BankMaster extends Model<
 
 /**
  * Initializes Bank Master Table in Database for Syncing
- *
  * @param {Sequelize} sequelize - Sequelize Object
  */
 export function initBankMaster(sequelize: Sequelize): void {

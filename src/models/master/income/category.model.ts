@@ -95,7 +95,6 @@ export class IncomeCategoryMaster extends Model<
 
 /**
  * Initializes Income Category Master Table in the Database for Syncing
- *
  * @param {Sequelize} sequelize - Sequelize Object
  */
 export function initIncomeCategoryMaster(sequelize: Sequelize) {

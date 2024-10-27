@@ -3,7 +3,6 @@ import type { Request, Response, NextFunction } from 'express';
 
 /**
  * Checks for the Origin Header and assigns the Cors Header if it is Validated
- *
  * @param {Request} req - Express Request Object
  * @param {Response} res - Express Response Object
  * @param {NextFunction} next - Express Next Function

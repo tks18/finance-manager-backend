@@ -3,7 +3,6 @@ import jwt from 'jsonwebtoken';
 
 /**
  * Verifies the JWT Sent by the User
- *
  * @param {string} jwtString - User JWT String
  * @returns {boolean} - boolean
  */

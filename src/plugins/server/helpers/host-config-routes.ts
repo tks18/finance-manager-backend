@@ -8,7 +8,6 @@ import type { IDBRouteConfig } from '@plugins/server/types';
 
 /**
  * Parses DB Model Route Config and Hosts all the Routes
- *
  * @param {IDBRouteConfig[]} config - Model Route Config
  * @returns {IRouter} - Router for the Config
  */

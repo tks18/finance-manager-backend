@@ -13,7 +13,6 @@ export class ExpressHealthChecker {
 
   /**
    * Creates a Express Health Check Service
-   *
    * @param {Server} server - Http Server Object
    */
   constructor(server: Server) {
@@ -22,7 +21,6 @@ export class ExpressHealthChecker {
 
   /**
    * Close Database Connection Before Termination of Server
-   *
    * @returns {[Promise<void>]} Promise - Closes the Database Connection
    */
   private onSignal(): Promise<void> {
@@ -33,7 +31,6 @@ export class ExpressHealthChecker {
 
   /**
    * Server Shutdown Message
-   *
    * @returns {Promise<void>} Promise - Console logging Shutdown Message
    */
   private onShutdown(): Promise<void> {

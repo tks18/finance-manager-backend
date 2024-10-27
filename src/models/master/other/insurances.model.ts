@@ -83,7 +83,6 @@ function defineRelationships(): void {
 
 /**
  * Initializes Insurance Master Table in Database for Syncing
- *
  * @param {Sequelize} sequelize - Sequelize Object
  */
 export function initInsuranceMaster(sequelize: Sequelize): void {

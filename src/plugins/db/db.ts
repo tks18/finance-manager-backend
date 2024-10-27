@@ -26,7 +26,6 @@ export const sequelize = constructDBObject();
 
 /**
  * Connects to Postgres Database using Sequelize and tries to Authenticate with DB
- *
  * @param {Sequelize} sequelize - Sequelize DB Object
  */
 export async function authenticateDB(sequelize: Sequelize): Promise<void> {
@@ -42,7 +41,6 @@ export async function authenticateDB(sequelize: Sequelize): Promise<void> {
 
 /**
  * Closes the Sequelize Database Connection
- *
  * @param {Sequelize} sequelize - Sequelize Database Object
  */
 export async function closeDB(sequelize: Sequelize): Promise<void> {

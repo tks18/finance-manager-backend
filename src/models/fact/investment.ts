@@ -91,7 +91,6 @@ function defineRelationships(): void {
 
 /**
  * Initializes Investment Transactions Table in Database for Syncing
- *
  * @param {Sequelize} sequelize - Sequelize Object
  */
 export function initInvestments(sequelize: Sequelize): void {

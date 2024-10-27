@@ -9,9 +9,9 @@ import { MakeNullishOptional } from 'sequelize/types/utils';
 
 /**
  * Gets the Market Data for all the Stocks in Investment Master Model which has ticker data
- *
  * @param {string} token - Session Token String
  * @param {IGetMarketDataInput} data - input for updateMarketData API
+ * @returns {Promise<MarketData[]>} - Market Data
  */
 export async function getMarketDate(
   token: string,

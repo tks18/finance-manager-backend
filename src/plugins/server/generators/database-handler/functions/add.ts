@@ -11,7 +11,6 @@ import type { MakeNullishOptional } from 'sequelize/types/utils';
 
 /**
  * Common Express Handler for all models to Add new Docs to the Database of that model
- *
  * @param {Request} req - Express Request Object
  * @param {Response} res - Express Response Object
  * @param {string} model - Sequelize Model Object

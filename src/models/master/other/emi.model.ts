@@ -127,7 +127,6 @@ function defineRelationships(): void {
 
 /**
  * Initializes EMI Master Table in Database for Syncing
- *
  * @param {Sequelize} sequelize - Sequelize Object
  */
 export function initEMIMaster(sequelize: Sequelize): void {

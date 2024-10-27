@@ -1,7 +1,6 @@
 /**
  * Modified Version of Get-routes Npm Package to Support Express Router Object instead of Express App Object
  * Credits to Original Creator
- *
  * @module get-routes npm Package
  * @author Golo Roden <golo.roden@thenativeweb.io>
  * @author Matthias Wagler <matthias.wagler@thenativeweb.io>

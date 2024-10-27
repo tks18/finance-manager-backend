@@ -55,7 +55,6 @@ export class ExpenseCategoryMaster extends Model<
 
 /**
  * Initializes Expense Category Master Table in the Database for Syncing
- *
  * @param {Sequelize} sequelize - Sequelize Object
  */
 export function initExpenseCategoryMaster(sequelize: Sequelize) {

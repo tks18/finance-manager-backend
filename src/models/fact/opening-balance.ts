@@ -58,7 +58,6 @@ function defineRelationships(): void {
 
 /**
  * Initializes Opening Balance Transactions Table in Database for Syncing
- *
  * @param {Sequelize} sequelize - Sequelize Object
  */
 export function initOpeningBalances(sequelize: Sequelize): void {

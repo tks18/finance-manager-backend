@@ -86,7 +86,6 @@ function defineRelationships(): void {
 
 /**
  * Initializes Credit Card Master Table in Database for Syncing
- *
  * @param {Sequelize} sequelize - Sequelize Object
  */
 export function initCreditCardMaster(sequelize: Sequelize): void {

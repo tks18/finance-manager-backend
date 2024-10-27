@@ -82,7 +82,6 @@ const calendarObjBuilder = (currentDate: DateTime): ICalendarRow => {
 
 /**
  * Builds a Calendar Table for the Calendar master With start and end Date Parameters
- *
  * @param {string} end - End Date (YYYY-MM-DD) format
  * @returns {ICalendarRow[]} - Calendar Array
  */

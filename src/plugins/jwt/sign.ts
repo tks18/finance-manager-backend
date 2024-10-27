@@ -4,7 +4,6 @@ import { Users } from '@models';
 
 /**
  * Create a JWT for the Particular User to login
- *
  * @param {Users} user - User Object
  * @returns {string} - Signed JWT
  */

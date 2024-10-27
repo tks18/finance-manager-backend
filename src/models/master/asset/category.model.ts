@@ -55,7 +55,6 @@ export class AssetCategoryMaster extends Model<
 
 /**
  * Initializes Asset Category Master Table in the Database for Syncing
- *
  * @param {Sequelize} sequelize - Sequelize Object
  */
 export function initAssetCategoryMaster(sequelize: Sequelize) {
